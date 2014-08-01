@@ -1,0 +1,1702 @@
+diff --git a/app/views/accounts/confirm.html.erb b/app/views/accounts/confirm.html.erb
+index f9ffb64..fc2005b 100644
+--- a/app/views/accounts/confirm.html.erb
++++ b/app/views/accounts/confirm.html.erb
+@@ -1,8 +1,9 @@
+-<p><%= t("You have successfully signed up") %></p>  
+-<p><%= t(".login", login: current_user.login)%></p>
+-<p><%= t(".password", password: session[:tmppass]) %></p>
++<div class='alert alert-success'><%= t(".you_have_successfully_signed_up") %></div>
+ <div class='alert alert-warning'><%= t("setup.confirm.dont_lose_the_mail_sent", email: current_user.email)%></div>
+-
+ <%- content_for :account_links do %>
+-  <%= t(".proceed_to", link: link_to(t(".admin"), controller: 'admin/dashboard')) %>
+-<% end %>
++<div class="row">
++ <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + content_tag(:span, '' , class: 'glyphicon glyphicon-th') + " " + t(".admin") + "</button>").html_safe, controller: 'admin/dashboard' ) %>
++ </div>
++</div>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/accounts/login.html.erb b/app/views/accounts/login.html.erb
+index 4807142..b828df4 100644
+--- a/app/views/accounts/login.html.erb
++++ b/app/views/accounts/login.html.erb
+@@ -1,30 +1,36 @@
+ <%- content_for :page_title do %>
+   <%= "#{this_blog.blog_name} - #{t('.title')}" %>
+ <%- end %>
+-
+ <%= form_tag action: "login" do %>
+-  <fieldset>
+-  <div class="form-group">
+-    <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".login"), autofocus: 'autofocus'})%>
+-  </div>
+-  <div class="form-group">
+-    <%= password_field(:user, :password, {class: 'form-control', placeholder: t(".password")})%>
+-  </div>
+-  <div class="checkbox">
+-    <label>
+-      <%= check_box_tag 'remember_me' %> <%= t('.remember_me')%>
+-    </label>
+-  </div>
+-  <%= submit_tag t('.sign_in'), class: "btn btn-lg btn-success btn-block"  %>
++<fieldset>
++ <div class="form-group">
++  <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".login"), autofocus: 'autofocus'})%>
++ </div>
++ <div class="form-group">
++  <%= password_field(:user, :password, {class: 'form-control', placeholder: t(".password")})%>
++ </div>
++ <div class="checkbox">
++  <label><%= check_box_tag 'remember_me' %> <%= t('.remember_me')%></label>
++ </div>
++ <%= submit_tag t('.sign_in'), class: "btn btn-info btn-block"  %>
+ </fieldset>  
+ <% end %>
+-
+ <%- content_for :account_links do %>
+-  <small><%= link_to(t("accounts.lost_my_password"), action: 'recover_password') %></small>
+-  <br/>
++<div class="row">
++ <div class="col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + t("accounts.lost_my_password") + "</button>").html_safe , action: 'recover_password') %>
++  <br />
++ </div>
++ <div class="col-sm-3 col-md-2">
+   <%- if this_blog.allow_signup? %>
+-    <small><%= link_to(t("accounts.create_account"), action: 'signup') %></small>
+-    <br/>
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + t("accounts.create_account") + "</button>").html_safe, action: 'signup') %>
++  <br />
+   <% end %>
+-  <small><%= link_to(t("accounts.back_to", place: this_blog.blog_name).html_safe, this_blog.base_url) %></small>
+-<% end %>
++ </div>
++</div>
++<div class="row">
++ <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + content_tag(:span, '' , class: 'glyphicon glyphicon-arrow-left') + "  " + t("accounts.back_to", place: this_blog.blog_name) + "</button>").html_safe, this_blog.base_url) %>
++ </div>
++</div>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/accounts/recover_password.html.erb b/app/views/accounts/recover_password.html.erb
+index bfeaa43..d75ba7d 100644
+--- a/app/views/accounts/recover_password.html.erb
++++ b/app/views/accounts/recover_password.html.erb
+@@ -1,24 +1,30 @@
+ <%- content_for :page_title do %>
+   <%= "#{this_blog.blog_name} - #{t('.title')}" %>
+ <%- end %>
+-
+ <%= form_tag action: "recover_password" do %>
+ <fieldset>
+-  <div class="form-group">
+-    <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username_or_email")})%>
+-  </div>
+-  <div class="form-group">
+-    <%= submit_tag t('.reset_my_password'), class: "btn btn-lg btn-success btn-block" %>
+-  </div>
++ <div class="form-group">
++  <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username_or_email")})%>
++ </div>
++ <%= submit_tag t('.reset_my_password'), class: "btn btn-primary btn-block" %>
+ </fieldset>
+ <% end %>
+-
+ <%- content_for :account_links do %>
+-  <small><%= link_to(t("accounts.back_to_login"), action: 'login') %></small>
+-  <br/>
++<div class="row">
++ <div class="col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + t("accounts.back_to_login") + "</button>").html_safe , action: 'login') %>
++  <br />
++ </div>
++ <div class="col-sm-3 col-md-2">
+   <%- if this_blog.allow_signup? %>
+-    <small><%= link_to(t("accounts.create_account"), action: 'signup') %></small>
+-    <br/>
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + t("accounts.create_account") + "</button>").html_safe, action: 'signup') %>
++  <br />
+   <% end %>
+-  <small><%= link_to(t("accounts.back_to", place: this_blog.blog_name).html_safe, this_blog.base_url) %></small>
+-<% end %>
++ </div>
++</div>
++<div class="row">
++ <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + content_tag(:span, '' , class: 'glyphicon glyphicon-arrow-left') + "  " + t("accounts.back_to", place: this_blog.blog_name) + "</button>").html_safe, this_blog.base_url) %>
++ </div>
++</div>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/accounts/signup.html.erb b/app/views/accounts/signup.html.erb
+index 9eff060..2ae5572 100644
+--- a/app/views/accounts/signup.html.erb
++++ b/app/views/accounts/signup.html.erb
+@@ -1,23 +1,31 @@
+ <%- content_for :page_title do %>
+   <%= "#{this_blog.blog_name} - #{t('.title')}" %>
+ <%- end %>
+-
+ <%= form_tag action: "signup" do %>
+ <fieldset>
+-  <div class="form-group">
+-    <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username") })%>
+-  </div>
+-  <div class="form-group">
+-    <%= text_field(:user, :email, {class: 'form-control', placeholder: t(".email") })%>    
+-  </div>
+-  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('.signup')%>" />
++ <div class="form-group">
++  <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username") })%>
++ </div>
++ <div class="form-group">
++  <%= text_field(:user, :email, {class: 'form-control', placeholder: t(".email") })%>    
++ </div>
++ <input type="submit" id="submit" class='btn btn-primary btn-block' value="<%= t('.signup')%>" />
+ </fieldset>
+ <% end %>
+-
+ <%- content_for :account_links do %>
+-  <small><%= link_to(t("accounts.lost_my_password"), action: 'recover_password') %></small>
+-  <br/>
+-  <small><%= link_to(t("accounts.back_to_login"), action: 'login') %></small>
+-  <br/>
+-  <small><%= link_to(t("accounts.back_to", place: this_blog.blog_name).html_safe, this_blog.base_url) %></small>
+-<% end %>
++<div class="row">
++ <div class="col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + t("accounts.lost_my_password") + "</button>").html_safe , action: 'recover_password') %>
++  <br />
++ </div>
++ <div class="col-sm-3 col-md-2">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + t("accounts.back_to_login") + "</button>").html_safe , action: 'login') %>
++  <br />
++ </div>
++</div>
++<div class="row">
++ <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
++  <%= link_to(("<button type='button' class='btn btn-info btn-block'>" + content_tag(:span, '' , class: 'glyphicon glyphicon-arrow-left') + "  " + t("accounts.back_to", place: this_blog.blog_name) + "</button>").html_safe, this_blog.base_url) %>
++ </div>
++</div>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/articles/_article_content.html.erb b/app/views/articles/_article_content.html.erb
+index fe392ec..dba2896 100644
+--- a/app/views/articles/_article_content.html.erb
++++ b/app/views/articles/_article_content.html.erb
+@@ -1,5 +1,5 @@
+ <% unless controller.action_name == 'redirect' %>
+-  <%= render 'articles/article_excerpt', { :article => article } %>
++<%= render 'articles/article_excerpt', { :article => article } %>
+ <% else %>
+-  <%= render 'articles/full_article_content', { :article => article } %>
+-<% end %>
++<%= render 'articles/full_article_content', { :article => article } %>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/articles/_article_excerpt.html.erb b/app/views/articles/_article_excerpt.html.erb
+index 4b7c485..58d691c 100644
+--- a/app/views/articles/_article_excerpt.html.erb
++++ b/app/views/articles/_article_excerpt.html.erb
+@@ -1,14 +1,9 @@
+ <% if article.excerpt? %>
+-  <%= article.excerpt %>
+-  <div class="extended">
+-    <p><%= link_to_permalink article, t(".continue_reading") %></p>
+-  </div>
++<p class="text-justify lead"><%= article.excerpt %></p>
++<p><%= link_to_permalink article, t(".continue_reading") %></p>
+ <% else %>
+-  <%= article.html(:body) %>
+-  <% if article.extended? %>
+-    <div class="extended">
+-      <p><%= link_to_permalink article, t(".continue_reading") %></p>
+-    </div>
+-  <% end %>
++<p class="text-justify lead"><%= article.html(:body) %></p>
++<% if article.extended? %>
++<%= link_to_permalink(article, ("<button type='button' class='btn btn-xs btn-info'>" + t(".continue_reading") + "</button>").html_safe) %>
+ <% end %>
+-
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/articles/_full_article_content.html.erb b/app/views/articles/_full_article_content.html.erb
+index 5bcdee7..d353bb5 100644
+--- a/app/views/articles/_full_article_content.html.erb
++++ b/app/views/articles/_full_article_content.html.erb
+@@ -1,5 +1 @@
+-<%= article.html(:body) %>
+-<div class="extended">
+-  <%= article.html(:extended) %>
+-</div>
+-
++<p class="text-justify"><%= article.html(:extended) %></p>
+\ No newline at end of file
+diff --git a/app/views/articles/_protected_article_content.html.erb b/app/views/articles/_protected_article_content.html.erb
+index 46213e3..06b5128 100644
+--- a/app/views/articles/_protected_article_content.html.erb
++++ b/app/views/articles/_protected_article_content.html.erb
+@@ -1,6 +1,5 @@
+ <% if article.password.nil? or article.password.empty? %>
+-  <%= render 'articles/article_content', { :article => article } %>
++<%= render 'articles/article_content', { :article => article } %>
+ <% else %>
+-  <%= render 'articles/password_form', { :article => article } %>
+-<% end %>
+-
++<%= render 'articles/password_form', { :article => article } %>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/layouts/accounts.html.erb b/app/views/layouts/accounts.html.erb
+index 6e38308..f28e5fd 100644
+--- a/app/views/layouts/accounts.html.erb
++++ b/app/views/layouts/accounts.html.erb
+@@ -1,34 +1,36 @@
+-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-<html xmlns="http://www.w3.org/1999/xhtml">
++<!DOCTYPE html>
++<html lang="pt">
+ <head>
+-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>
+-    <%= yield :page_title %>
+-  </title>
+-  <meta http-equiv="imagetoolbar" content="no" />
+-  <%= stylesheet_link_tag "accounts", "bootstrap" %>
+-  <%= javascript_include_tag 'publify_admin' %>
++<title><%= yield :page_title %></title>
++<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<meta http-equiv="imagetoolbar" content="no" />
++<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<%= stylesheet_link_tag :cfpt %>
++<%= javascript_include_tag :cfpt %>
+ </head>
+ <body>
+-  <div class="container">
+-    <div class="row">
+-      <div class="col-md-4 col-md-offset-4">
+-        <div class="panel panel-default">
+-          <div class="panel-heading">
+-            <h1 class='panel-title'><%= link_to("Publify", "http://publify.co") %></h1>
+-          </div>
+-          <div class="panel-body">
+-            <%= render 'shared/flash', flash: flash %>
+-            <%= yield %>
+-          </div>
+-        </div>
+-        <%- if content_for?(:account_links) %>
+-            <%= yield :account_links %>
+-        <%- end %>  
+-      </div>
++<div class="container-fluid">
++ <div class="row">
++  <div class="col-md-12 text-hide" style="padding-top:200px;background:url(<%= File.join(this_blog.base_url, "images", "theme", "bg#{Random.rand(351) + 1}.jpg") %>) center center no-repeat;">Fruga Logo</div>
++ </div>
++ <br />
++ <div class="row">
++  <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
++   <div class="panel panel-default">
++    <div class="panel-heading">
++     <span class='panel-title'><%= (this_blog.blog_name) %></span>
+     </div>
++    <div class="panel-body">
++      <%= render 'shared/flash', flash: flash %>
++      <%= yield %>
++    </div>
++   </div>
+   </div>
++ </div>
++ <%- if content_for?(:account_links) %>
++  <%= yield :account_links %>
++ <%- end %>  
++</div>
+ </body>
+-</html>
++</html>
+\ No newline at end of file
+diff --git a/app/views/layouts/administration.html.erb b/app/views/layouts/administration.html.erb
+index 47e5632..55c7a92 100644
+--- a/app/views/layouts/administration.html.erb
++++ b/app/views/layouts/administration.html.erb
+@@ -1,101 +1,88 @@
+-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-<html xmlns="http://www.w3.org/1999/xhtml">
++<!DOCTYPE html>
++<html lang="pt">
+ <head>
+-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+-  <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <meta http-equiv="imagetoolbar" content="no" />
+-  <%= stylesheet_link_tag 'publify_admin' %>
+-  <%= javascript_include_tag 'publify_admin' %>
+-  <%= csrf_meta_tags %>
++<title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
++<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<meta http-equiv="imagetoolbar" content="no" />
++<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<%= stylesheet_link_tag :cfpt_admin %>
++<%= javascript_include_tag :cfpt_admin %>
++<%= csrf_meta_tags %>
+ </head>
+ <body>
+-  <nav class='navbar navbar-default navbar-fixed-top' role="navigation">
+-    <div class="navbar-header">
+-      <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
+-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-top">
+-        <span class="sr-only">Toggle navigation</span>
+-        <span class="icon-bar"></span>
+-        <span class="icon-bar"></span>
+-        <span class="icon-bar"></span>
+-      </button>
+-    </div>
+-    <div class="collapse navbar-collapse" id="sidebar-top">
+-      <ul class='nav navbar-nav'>
+-        <% for pm in current_user.project_modules %>
+-          <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
+-            <%= tab_for(pm) %>
+-          <% else %>
+-          <li class='dropdown'>
+-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+-              <%= pm.menu_name %>
+-              <b class="caret"></b>
+-            </a>
+-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+-              <%= subtabs_for(pm.name.to_sym)%>
+-            </ul>
+-          </li>
+-          <%end %>
+-        <% end %>
+-      </ul>
+-      <ul class='nav navbar-nav pull-right'>        
+-        <li class='dropdown'>
+-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+-            <%= t("admin.menu.logged_in_as", login: current_user.display_name) %>
+-            <b class="caret"></b>
+-          </a>
+-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+-            <li><%= link_to t("admin.menu.profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
+-            <li role="presentation" class="divider"></li>
+-            <li><%= link_to t("admin.menu.documentation"), "https://github.com/fdv/publify/wiki" %></li>
+-            <li><%= link_to t("admin.menu.report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
+-            <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
+-            <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
+-            <li role="presentation" class="divider"></li>
+-            <li><%= link_to t("admin.menu.logout").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
+-          </ul>
+-        </li>
+-      </ul>
+-      <ul class='nav navbar-nav pull-right'>
+-        <li class='dropdown'>
+-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+-              <%= t(".new")%>
+-              <b class="caret"></b>
+-            </a>
+-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+-            <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
+-            <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
+-            <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
+-            <li><%= link_to(t("admin.menu.new_note"), {controller: 'notes'}) %></li>
+-          </ul>
+-        </li>
+-      </ul>
+-    </div>
+-  </nav>
+-  <div id='main'>
+-    <div class='row'>
+-      <div class='col-md-12'>
+-        <div style='margin-top:20px'>
+-          <%= render 'shared/flash', flash: flash %>
+-        </div>
+-        <%- if content_for?(:page_heading) %>
+-          <div class='page-header'>
+-            <%= yield :page_heading %>
+-          </div>
+-        <%- end %>
+-        <%= yield  %>
+-      </div>
+-    </div>  
+-
+-  <footer>
+-    <div class='row'>
+-      <div class='col-md-12'>
+-        <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t("admin.menu.powered_by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
+-      </div>      
+-    </div>
+-  </footer>
++<nav class='navbar navbar-default navbar-fixed-top' role="navigation">
++ <div class="container-fluid">
++  <div class="navbar-header">
++   <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>
++   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-top">
++    <span class="sr-only">Toggle navigation</span>
++    <span class="icon-bar"></span>
++    <span class="icon-bar"></span>
++    <span class="icon-bar"></span>
++   </button>
++  </div>
++  <div class="collapse navbar-collapse" id="sidebar-top">
++   <ul class='nav navbar-nav'>
++    <% for pm in current_user.project_modules %>
++     <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
++      <%= tab_for(pm) %>
++     <% else %>
++      <li class='dropdown'>
++       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= pm.menu_name %><b class="caret"></b></a>
++       <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><%= subtabs_for(pm.name.to_sym) %></ul>
++      </li>
++     <% end %>
++    <% end %>
++   </ul>
++   <ul class='nav navbar-nav navbar-right'>
++    <li class='dropdown'>
++     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
++      <%= t("admin.menu.logged_in_as", login: current_user.display_name) %><b class="caret"></b>
++     </a>
++     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
++      <li><%= link_to t("admin.menu.profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
++      <li role="presentation" class="divider"></li>
++      <li><%= link_to t("admin.menu.documentation"), "https://github.com/fdv/publify/wiki" %></li>
++      <li><%= link_to t("admin.menu.report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
++      <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
++      <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
++      <li role="presentation" class="divider"></li>
++      <li><%= link_to t("admin.menu.logout").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
++     </ul>
++    </li>
++   </ul>
++   <ul class='nav navbar-nav navbar-right'>
++    <li class='dropdown'>
++     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t(".new")%><b class="caret"></b></a>
++     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
++      <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
++      <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
++      <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
++      <li><%= link_to(t("admin.menu.new_note"), {controller: 'notes'}) %></li>
++     </ul>
++    </li>
++   </ul>
++  </div>
++ </div>
++</nav>
++<div id='main' class="container-fluid">
++ <div class='row'>
++  <div class='col-md-12'>
++   <div style='margin-top:20px'><%= render 'shared/flash', flash: flash %></div>
++   <%- if content_for?(:page_heading) %>
++    <div class='page-header'><%= yield :page_heading %></div>
++   <%- end %>
++   <%= yield %>
++  </div>
++ </div>
++ <div class='row'>
++  <div class='col-md-12'>
++   <small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a></small>
++  </div>      
++ </div>
+ </div>
+-  
+ </body>
+-</html>
++</html>
+\ No newline at end of file
+diff --git a/app/views/layouts/default.html.erb b/app/views/layouts/default.html.erb
+index 7f84150..74d73e3 100644
+--- a/app/views/layouts/default.html.erb
++++ b/app/views/layouts/default.html.erb
+@@ -1,29 +1,23 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="pt">
+ <head>
+-  <%= render 'shared/page_header' %>
+-  <title><%=h page_title %></title>
++<title><%=h page_title %></title>
++<%= render 'shared/page_header' %>
+ </head>
+-
+ <body>
+   <div id="header">
+     <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
+     <p class="desc"><%= this_blog.blog_subtitle %></p>
+   </div>
+-
+   <div id="page">
+     <div id="content">
+       <%= yield %>
+     </div>
+-
+     <div id="sidebar">
+       <%= render_sidebars %>
+     </div>
+-
+     <div id="footer">
+-      <p id="legal">
+-      <%= t(".powered_by", powered_by: link_to('Publify', 'http://publify.co')) %>
+-      </p>
++      <span id='legal'><small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a> - Todos os direitos reservados | <a href='http://fruga.herokuapp.com/contact-us'>Contacte-nos</a></small></span>
+     </div>
+   </div>
+ </body>
+diff --git a/app/views/layouts/editor.html.erb b/app/views/layouts/editor.html.erb
+index 63c9ab0..b335e39 100644
+--- a/app/views/layouts/editor.html.erb
++++ b/app/views/layouts/editor.html.erb
+@@ -1,33 +1,31 @@
+-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-<html xmlns="http://www.w3.org/1999/xhtml">
++<!DOCTYPE html>
++<html lang="pt">
+ <head>
+-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+-  <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <meta http-equiv="imagetoolbar" content="no" />
+-  <%= stylesheet_link_tag 'publify_admin' %>
+-  <%= javascript_include_tag 'publify_admin' %>
+-  <style type="text/css">
+-    #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
+-    @font-face {
+-      font-family: 'Open Sans';
+-      font-style: normal;
+-      font-weight: 400;
+-      src: local('Open Sans'), local('OpenSans'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans.woff') %>) format('woff');
+-    }
+-    @font-face {
+-      font-family: 'Open Sans';
+-      font-style: normal;
+-      font-weight: 700;
+-      src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
+-    }
+-  </style>
+-  
++<title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
++<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<meta http-equiv="imagetoolbar" content="no" />
++<%= stylesheet_link_tag 'publify_admin' %>
++<%= javascript_include_tag 'publify_admin' %>
++<style type="text/css">
++  #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
++  @font-face {
++    font-family: 'Ubuntu';
++    font-style: normal;
++    font-weight: 400;
++    src: local('Ubuntu'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'ubuntu.ttf') %>) format('truetype');
++  }
++  @font-face {
++    font-family: 'Ubuntu';
++    font-style: normal;
++    font-weight: 700;
++    src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'ubuntu-bold.ttf') %>) format('truetype');
++  }
++</style>
+ </head>
+ <body>
+   <div id='main'>
+     <%= yield  %>
+   </div>
+ </body>
+-</html>
++</html>
+\ No newline at end of file
+diff --git a/app/views/notification_mailer/_mail_footer.html.erb b/app/views/notification_mailer/_mail_footer.html.erb
+index dc02e5d..165989b 100644
+--- a/app/views/notification_mailer/_mail_footer.html.erb
++++ b/app/views/notification_mailer/_mail_footer.html.erb
+@@ -1,7 +1,26 @@
+ </div>
+-
+-<p><em>This is being sent to <%=h @user.name %> because you asked to be notified via email whenever
+-new content is posted to  <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>
+-To unsubscribe, go to
+-<a href="<%= @link_url = @blog.url_for(:controller => '/admin/users', :action => 'edit', :id => @user.id) %>"><%=h @link_url%></a>
+-and change your user settings.</p>
++</div>
++<footer>
++<div class='row'>
++<div class='col-md-12'>
++<small style="color:gray">Este email foi enviado para <%=h @user.name %> porque você está configurado para ser informado sempre que novo conteúdo é publicado na <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>. Para deixar de receber estes emails <a href="<%= @link_url = @blog.url_for(:controller => '/admin/users', :action => 'edit', :id => @user.id) %>" style=3D"color:#3366CC;text-decoration:none">altere a sua configuração</a>.</small>
++</div>      
++</div>
++<div class='row'>
++<div class='col-md-6'>
++<p>Pode encontrar-nos em:</p>	
++<ul style="list-style-type:none">
++<li><a href="https://plus.google.com/107330188100365112175" rel="publisher" title="Fruga no Google+" target="_new">Fruga no Google+</a></li>
++<li><a href="http://www.facebook.com/fruga.portugal" title="Fruga no facebook" target="_new">Fruga no facebook</a></li>
++<li><a href="http://twitter.com/frugapt" title="Fruga no twitter" target="_new">Fruga no twitter</a></li>
++<li><a href="http://pt.linkedin.com/in/frugapt" title="Fruga no linkedin" target="_new">Fruga no linkedin</a></li>
++</ul>
++</div>      
++<div class='col-md-6'>
++<small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a> - Todos os direitos reservados</a></small>
++</div>      
++</div>
++</footer>
++</div>
++</body>
++</html>
+\ No newline at end of file
+diff --git a/app/views/notification_mailer/_mail_header.html.erb b/app/views/notification_mailer/_mail_header.html.erb
+index 7661075..714d9b5 100644
+--- a/app/views/notification_mailer/_mail_header.html.erb
++++ b/app/views/notification_mailer/_mail_header.html.erb
+@@ -1 +1,10 @@
+-<div style="margin:1em;padding:4px;background:#eee;border:1px solid black">
++<!DOCTYPE html>
++<html lang="pt">
++<head>
++<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<%= stylesheet_link_tag :publify %>
++</head>
++<body>
++<div id='main'>
++<div class='row'>
++<div class='col-md-12'>
+\ No newline at end of file
+diff --git a/app/views/notification_mailer/article.html.erb b/app/views/notification_mailer/article.html.erb
+index 549a22f..d2ce472 100644
+--- a/app/views/notification_mailer/article.html.erb
++++ b/app/views/notification_mailer/article.html.erb
+@@ -1,6 +1,5 @@
+-<p>A new article has been posted on <%=h @blog.blog_name %>:</p>
+-
+ <%= render 'mail_header' %>
++<h5>Foi publicado um novo artigo na <%=h @blog.blog_name %>:</h5>
+ <h2><%=h @article.title %></h2>
+ <%= html @article, :body %>
+-<%= render 'mail_footer' %>
++<%= render 'mail_footer' %>
+\ No newline at end of file
+diff --git a/app/views/notification_mailer/comment.html.erb b/app/views/notification_mailer/comment.html.erb
+index c0ce73a..774bdb4 100644
+--- a/app/views/notification_mailer/comment.html.erb
++++ b/app/views/notification_mailer/comment.html.erb
+@@ -1,11 +1,8 @@
+-<p>A new comment has been posted on
+-    <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>, responding to
+-    <a href="<%= @comment.article.permalink_url %>"><%=h(@comment.article.title) %></a>.</p>
+-
+ <%= render 'mail_header' %>
++<h5>Foi publicado um novo comentário na <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>, em resposta a <a href="<%= @comment.article.permalink_url %>"><%=h(@comment.article.title) %></a>.</h5>
+ <h2><%=h @comment.title %></h2>
+-<cite><strong><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></strong> </cite>
+- <%= link_to('said', @comment.permalink_url) %>
+- <%= display_date_and_time @comment.created_at %> <br />
++<cite><strong><%= (@comment.url.blank?) ? h(@comment.author) : link_to(h(@comment.author), @comment.url) %></strong></cite>
++<%= link_to('said', @comment.permalink_url) %>
++<%= display_date_and_time @comment.created_at %><br/>
+ <%= html @comment %>
+-<%= render 'mail_footer' %>
++<%= render 'mail_footer' %>
+\ No newline at end of file
+diff --git a/app/views/notification_mailer/notif_user.html.erb b/app/views/notification_mailer/notif_user.html.erb
+index ca7f475..756c9ea 100644
+--- a/app/views/notification_mailer/notif_user.html.erb
++++ b/app/views/notification_mailer/notif_user.html.erb
+@@ -1,14 +1,37 @@
+-<html>
++<!DOCTYPE html>
++<html lang="pt">
++<head>
++<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<%= stylesheet_link_tag :publify %>
++</head>
+ <body>
+-  <p>Your <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a> account has been created.</p>
+-
+-  <%= render 'mail_header' %>
+-    <p>Your credentials appear below.</p>
+-
+-    <ul>
+-      <li>Login: <%= h @user.login %></li>
+-      <li>Password: <%= h @user.password %></li>
+-    </ul>
++<div id='main'>
++ <div class='row'>
++  <div class='col-md-12'>
++   <h2>A sua conta na <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a> foi criada.</h2>
++   <p>As suas credenciais são as seguintes:</p>
++   <ul>
++    <li>Login: <%= h @user.login %></li>
++    <li>Senha: <%= h @user.password %></li>
++   </ul>
+   </div>
++ </div>
++<footer>
++<div class='row'>
++<div class='col-md-6'>
++<p>Pode encontrar-nos em:</p>	
++<ul style="list-style-type:none">
++<li><a href="https://plus.google.com/107330188100365112175" rel="publisher" title="Fruga no Google+" target="_new">Fruga no Google+</a></li>
++<li><a href="http://www.facebook.com/fruga.portugal" title="Fruga no facebook" target="_new">Fruga no facebook</a></li>
++<li><a href="http://twitter.com/frugapt" title="Fruga no twitter" target="_new">Fruga no twitter</a></li>
++<li><a href="http://pt.linkedin.com/in/frugapt" title="Fruga no linkedin" target="_new">Fruga no linkedin</a></li>
++</ul>
++</div>      
++<div class='col-md-6'>
++<small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a> - Todos os direitos reservados</a></small>
++</div>      
++</div>
++</footer>
++</div>
+ </body>
+-</html>
++</html>
+\ No newline at end of file
+diff --git a/app/views/shared/_page_header.html.erb b/app/views/shared/_page_header.html.erb
+index 628c03a..45fd655 100644
+--- a/app/views/shared/_page_header.html.erb
++++ b/app/views/shared/_page_header.html.erb
+@@ -1,26 +1,40 @@
+-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+-<%= meta_tag 'ICBM', this_blog.geourl_location if this_blog.geourl_location.present? %>
+-<%= meta_tag 'description', @description unless @description.blank? %>
+-<%= meta_tag 'robots', 'noindex, follow' if stop_index_robots?(this_blog) %>
+-<%= meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?%>
+-<meta name="generator" content="Publify <%=PUBLIFY_VERSION%>" />
++<meta charset="UTF-8">
++<%- if this_blog.geourl_location.present? %>
++<%= meta_tag 'ICBM', this_blog.geourl_location %>
++<%- end %>
++<%- if @description.present? %>
++<%= meta_tag 'description', @description %>
++<%- end %>
++<%- if stop_index_robots?(this_blog) %>
++<%= meta_tag 'robots', 'noindex, follow' %>
++<%- end %>
++<%- if this_blog.google_verification.present? %>
++<%= meta_tag 'google-site-verification', this_blog.google_verification %>
++<%- end %>
++<meta name="generator" content="Fruga Portugal <%= PUBLIFY_VERSION %>" />
+ <%= show_meta_keyword %>
+ <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml', :action => 'rsd' %>" />
+ <%- if feed_atom %>
+-  <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>" />
++<link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>" />
+ <%- end %>
+ <%- if feed_rss %>
+-  <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>" />
++<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>" />
+ <%- end %>
+-<%= javascript_include_tag :publify %>
+-<%= stylesheet_link_tag :publify %>
+-<%= page_header_includes %>
+-<%= use_canonical  if this_blog.use_canonical_url %>
+-<%- if @content_for_script.present? -%>
++<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
++<%= stylesheet_link_tag :cfpt %>
++<%- if this_blog.use_canonical_url %>
++<%= use_canonical %>
++<%- end %>
++<%= javascript_include_tag :cfpt %>
++<%- if @content_for_script.present? %>
+ <script type="text/javascript"><%= @content_for_script %></script>
+-<%- end -%>
+-<%= this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
++<%- end %>
++<%- if this_blog.custom_tracking_field.present? %>
++<%= this_blog.custom_tracking_field %>
++<%- end %>
++<%= page_header_includes %>
+ <%= google_analytics %>
+-
+ <%= meta_tag 'og:site_name', this_blog.blog_name %>
+-<%= meta_tag 'og:title', @article ? @article.title : @page_title %>
++<%= meta_tag 'og:title', @article ? @article.title : @page_title %>
+\ No newline at end of file
+diff --git a/db/seeds.rb b/db/seeds.rb
+index 7adffbd..cd086d0 100644
+--- a/db/seeds.rb
++++ b/db/seeds.rb
+@@ -6,32 +6,335 @@
+ #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+ #   Mayor.create(name: 'Daley', city: cities.first)
+ 
+-Blog.create
+-
+-tag = Tag.create(name: 'general', display_name: 'General')
+-
+-PageSidebar.create(active_position: 0, staged_position: 0)
+-TagSidebar.create(active_position: 1)
+-ArchivesSidebar.create(active_position: 2)
+-StaticSidebar.create(active_position: 3)
+-MetaSidebar.create(active_position: 4)
+-
+-TextFilter.create(name: 'none', description: 'None',
+-                  markup: 'none', filters: [], params: {})
+-TextFilter.create(name: 'markdown', description: 'Markdown',
+-                  markup: "markdown", filters: [], params: {})
+-TextFilter.create(name: 'smartypants', description: 'SmartyPants',
+-                  markup: 'none', filters: [:smartypants], params: {})
+-TextFilter.create(name: 'markdown smartypants', description: 'Markdown with SmartyPants',
+-                  markup: 'markdown', filters: [:smartypants], params: {})
+-TextFilter.create(name: 'textile', description: 'Textile',
+-                  markup: 'textile', filters: [], params: {})
+-
+-admin = Profile.create(label: 'admin', nicename: 'Publify administrator',
+-                       modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :themes, :sidebar, :profile, :users, :settings, :seo])
+-publisher = Profile.create(label: 'publisher', nicename: 'Blog publisher',
+-                           modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
+-contributor = Profile.create(label: 'contributor', nicename: 'Contributor',
+-                             modules: [:dashboard, :profile ])
+-
+-Dir.mkdir("#{::Rails.root.to_s}/public/files") unless File.directory?("#{::Rails.root.to_s}/public/files")
++cf=Blog.create!(blog_name: 'Comunidade Fruga',
++  blog_subtitle: 'vida consciente e deliberada', 
++  lang: 'pt_PT', 
++  base_url: 'http://comunidade.fruga.pt',
++  email_from: 'info@fruga.pt',
++  allow_signup: 1,
++  global_pings_disable: 1,
++  send_outbound_pings: 0,
++  default_allow_pings: 0,
++  default_allow_comments: 1,
++  default_moderate_comments: 1,
++  link_to_author: 0,
++  date_format: 'setting_date_format_distance_of_time_in_words',
++  time_format: '%Hh%M',
++  geourl_location: '41.24538, -8.66425',
++
++  custom_tracking_field: '',
++  twitter_consumer_key: '',
++  twitter_consumer_secret: '',
++  custom_url_shortener: '',
++  statuses_in_timeline: 1,
++
++  # Spam
++  #sp_article_auto_close,      :integer, 0
++  #sp_akismet_key,             :string, ''
++  #use_recaptcha,              :boolean, false
++  sp_global: 1,
++  sp_url_limit: 2,
++
++  # SEO,
++  meta_description:            'A Comunidade Fruga está dedicada a aprender sobre como viver de forma consciente e deliberada, simplificando a vida criando novas formas de fazer as coisas e com-partilhando ideias para aumentar a nossa felicidade',
++  meta_keywords:               'comunidade, fruga, aprender, informar, educar, viver, consciente, deliberada, felicidade',
++  google_analytics:            'UA-38353037-6',
++  rss_description:             1,
++  rss_description_text:        "<hr/><p><small>Artigo original escrito por %author% e publicado na <a href='%blog_url%'>%blog_name%</a> | <a href='%permalink_url%'>link direto para este artigo</a> | Se está a ler este artigo noutro lugar que não seja na <a href='%blog_url%'>%blog_name%</a>, então este contéudo foi ilegalmente reproduzido e sem a devida autorização</small></p>.",
++  permalink_format:            '/%year%/%month%/%day%/%title%',
++  #feedburner_url:              '',
++  #robots:                      '',
++  #google_verification:         '',
++  #text_filter:                 'markdown smartypants'
++  #comment_text_filter:         'markdown smartypants'
++  text_filter:                 'none',
++  comment_text_filter:         'none',
++
++  unindex_categories:          1,
++  unindex_tags:                1,
++  admin_display_elements:      10,
++  limit_article_display:       4,
++  dofollowify:                 1,
++  use_canonical_url:           1,
++  use_meta_keyword:            true,
++  home_title_template:         "%blog_name% | %blog_subtitle%",
++  home_desc_template:          "%blog_name% | %blog_subtitle% | %meta_keywords%",
++  article_title_template:      "%title% | %blog_name%",
++  article_desc_template:       "%excerpt%",
++  page_title_template:         "%title% | %blog_name%",
++  page_desc_template:          "%excerpt%",
++  paginated_title_template:    "%blog_name% | %blog_subtitle% %page%",
++  paginated_desc_template:     "%blog_name% | %blog_subtitle% | %meta_keywords% %page%",
++  tag_title_template:          "Tag: %name% | %blog_name% %page%",
++  tag_desc_template:           "%name% | %blog_name% | %blog_subtitle% %page%",
++  author_title_template:       "%author% | %blog_name%",
++  author_desc_template:        "%author% | %blog_name% | %blog_subtitle%",
++  archives_title_template:     "Archives for %blog_name% %date% %page%",
++  archives_desc_template:      "Archives for %blog_name% %date% %page% %blog_subtitle%",
++  search_title_template:       "Results for %search% | %blog_name% %page%",
++  search_desc_template:        "Results for %search% | %blog_name% | %blog_subtitle% %page%",
++  statuses_title_template:     "Notes | %blog_name% %page%",
++  statuses_desc_template:      "Notes | %blog_name% | %blog_subtitle% %page%",
++  status_title_template:       "%body% | %blog_name%",
++  status_desc_template:        "%excerpt%"
++)
++
++adm = Profile.create(label: 'admin', nicename: 'Administrador',
++  modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :themes, :sidebar, :profile, :users, :settings, :seo])
++pub = Profile.create(label: 'publisher', nicename: 'Editor',
++  modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
++col = Profile.create(label: 'contributor', nicename: 'Colaborador',
++  modules: [:dashboard, :profile ])
++
++fr=User.create(firstname: 'Fruga',
++  lastname: 'Portugal',
++  nickname: 'frugapt',
++  name: 'Fruga Portugal',
++  login: 'frugapt',
++  email: 'gestao@fruga.pt',
++  description: 'Administradora da comunidade fruga',
++  profile_id: adm.id, 
++  notify_via_email: true, 
++  notify_on_new_articles: true, 
++  notify_on_comments: true 
++)
++fr.generate_password!
++fr.save
++
++#TagSidebar.create(active_position: 0, staged_position: 0, maximum_tags: 5 )
++PopularSidebar.create(active_position: 0,staged_position: 0,title: 'Artigos populares',count: 5)
++ArchivesSidebar.create(active_position: 1,title: 'Arquivo',show_count: true,count: 6)
++#SearchSidebar.create(active_position: 2,title: 'Pesquisa')
++#PageSidebar.create(active_position: 3,maximum_pages: 5)
++#StaticSidebar.create(active_position: 2,title: 'Links',
++# Para activar quando mercado estiver activo
++#<li><br></li>
++#<li><a href="http://fruga.herokuapp.com" title="Fazer compras no mercado de credito mutuo directo - sem necessitar de dinheiro" target="_new">Mercado Fruga</a></li>
++#<li><br></li>
++# Para activar usado micropagamentos em bitcoin
++#<li><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
++#<input type="hidden" name="cmd" value="_s-xclick">
++#<input type="hidden" name="hosted_button_id" value="FRMBTEZ6WULMY">
++#<input type="image" src="http://www.fruga.pt/images/cm-doar.png" border="0" name="submit" alt="PayPal - A maneira mais fácil e segura de efectuar doações online!" title="Fazer uma doação à comunidade fruga de forma fácil e segura usando PayPal">
++#<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
++#</form></li>
++#  body: %q{
++#<ul class="list-unstyled">
++#<li><a href="https://plus.google.com/107330188100365112175" rel="publisher" title="Fruga no Google+" target="_new">Fruga no Google+</a></li>
++#<li><a href="http://www.facebook.com/fruga.portugal" title="Fruga no facebook" target="_new">Fruga no facebook</a></li>
++#<li><a href="http://twitter.com/frugapt" title="Fruga no twitter" target="_new">Fruga no twitter</a></li>
++#<li><a href="http://pt.linkedin.com/in/frugapt" title="Fruga no linkedin" target="_new">Fruga no linkedin</a></li>
++#</ul>
++#}
++#  )
++
++TextFilter.create(name: 'none', description: 'None', markup: 'none', filters: [], params: {})
++TextFilter.create(name: 'markdown', description: 'Markdown', markup: "markdown", filters: [], params: {})
++TextFilter.create(name: 'smartypants', description: 'SmartyPants', markup: 'none', filters: [:smartypants], params: {})
++TextFilter.create(name: 'markdown smartypants', description: 'Markdown with SmartyPants', markup: 'markdown', filters: [:smartypants], params: {})
++TextFilter.create(name: 'textile', description: 'Textile', markup: 'textile', filters: [], params: {})
++
++tc = Tag.create(name: 'comunidade', display_name: 'Comunidade')
++tm = Tag.create(name: 'mercado', display_name: 'Mercado')
++t1 = Tag.create(name: 'consciencia', display_name: 'Consciência')
++t2 = Tag.create(name: 'economia', display_name: 'Economia')
++
++a1 = Article.create(
++  title: 'Bem vindo à comunidade fruga',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'comunidade-fruga',
++  tags: [tc]
++)
++a1.body_and_extended=%q{Na comunidade fruga estamos dedicados a viver de forma consciente e deliberada sorvendo toda a essência da vida afim de derrotar tudo o que é não-viver.
++<!--more-->
++Estamos dedicados a facilitar a conquista mais importante do ser humano - separar consciência e pensamentos.
++Perceber que não somos os nossos pensamentos, que somos aquilo que observa esses pensamentos.
++Reconhecer que as principais causas do sofrimento humano raramente são as situações que acontecem, mas sim os nossos pensamentos sobre essas situações.
++Na comunidade fruga estamos concentrados em simplificar, criando novas formas de fazer as coisas, compartilhando ideias para melhorar a nossa felicidade.
++Estamos ainda dedicados a criar um mercado de credito mutuo directo entre os nossos membros permitindo assim uma maior concentração na comunidade e nos seus objectivos esquecendo uma das maiores preocupações actuais - o problemas económicos e financeiros:
++<br/><br/>
++<iframe allowfullscreen='' frameborder='0' height='259' width='460' src='http://www.youtube.com/embed/NmFnwkwbjiI?rel=0'></iframe>
++} 
++a1.save
++
++a2 = Article.create(
++  title: 'A mais recente crise financeira explicada',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'crise-financeira-explicada',
++  tags: [tc, t2]
++)
++a2.body_and_extended=%q{O termo crise financeira é aplicado a uma variedade de situações nas quais instituições ou activos financeiros se desvalorizam repentinamente. No século XIX e no início do século XX, muitas crises financeiras estiveram associadas a corridas aos bancos, durante períodos de recessão. Outras caracterizaram-se pelo estouro de uma bolha financeira e pela quebra do mercado de acções ou por ataques especulativos à moeda de um país ou quando um país suspende o pagamento de sua dívida.
++<!--more-->
++Há várias teorias acerca do desenvolvimento das crises financeiras e como evitá-las. Entretanto, não há consenso entre os economistas. As crises continuam a ocorrer por todo o mundo e parecem produzir-se com certa regularidade, podendo ser inerentes ao funcionamento da economia capitalista. Nos dias actuais, a Crise económica de 2008, que atingiu todo o planeta, é a mais forte desde a Crise de 1929.
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="259" src="http://www.youtube.com/embed/kC_943HEla4?rel=0" width="460"></iframe>
++} 
++a2.save
++
++a3 = Article.create(
++  title: 'Resposta à crise',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'resposta-crise',
++  tags: [tc, t2]
++)
++a3.body_and_extended=%q{A actual crise europeia tornou difícil ou até mesmo impossível, o pagamento ou refinanciamento da dívida pública europeia sem a ajuda de terceiros. A partir do final de 2009, o receio de uma crise de dívida pública desenvolveu-se entre os investidores tendo como resultado o aumento dos níveis de endividamento do governo e entidades privadas. Por outro lado, as dívidas privadas decorrentes da bolha de especulação imobiliária, foram transferidas para a dívida pública como resultado dos resgates do sistema bancário e das respostas governamentais à desaceleração das economias no período pós-bolha. Na Grécia, os insustentáveis compromissos salariais do sector público e de pensões impulsionaram o aumento da dívida. Os problemas intensificaram-se levando os ministros das finanças europeus a aprovar a criação do Fundo Europeu de Estabilização Financeira (FEEF) e o Mecanismo Europeu de Estabilidade (MEE) mas sem grande sucesso.
++<!--more-->
++A crise não só gerou efeitos adversos nas economias dos países mais atingidos, como também teve impacto político significativo na governação de 8 dos 17 países da zona euro, levando a mudanças de poder na Grécia, Irlanda, Itália, Portugal, Espanha, Eslovénia, Eslováquia e Países Baixos. Todas estas medidas podem ser traduzidas em poucas palavras; injectar mais dinheiro na economia através do endividamento adicional dos governos.
++Mas podemos perguntar-nos - não foi exactamente o endividamento exagerado que causou o receio entre os investidores. Esta crise veio principalmente tornar bem claro os problemas inerentes ao sistema financeiro mundial e a incapacidade das nossas instituições politicas para os resolver.
++A comunidade fruga está dedicada a criar um mercado de credito mutuo directo entre os seus membros permitindo assim que estes fiquem de fora do sistema financeiro actual o mais possível. Trata-se da utilização efectiva duma moeda comunitária (frugas) para permitir a comercialização de todo o tipo de produtos e serviços entre os membros. Muitas pessoas acham que dinheiro equivale a riqueza, mas não é verdade. A criação de riqueza está nas transacções entre as pessoas. Efectivamente quando eu vendo aquilo de que não preciso estou a criar riqueza se o que vendi tiver procura efectiva.
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="259" src="http://www.youtube.com/embed/josIzTsrpJk?rel=0" width="460"></iframe>
++} 
++a3.save
++
++a4 = Article.create(
++  title: 'Mercado Fruga',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'mercado-fruga',
++  tags: [tm]
++)
++a4.body_and_extended=%q{O Mercado Fruga é uma rede de comércio que permite aos participantes comprar e vender bens e serviços sem necessitar de euros mas sim moeda própria do mercado. Esta moeda está impressa em papel ou em moedas, mas sim em registos informáticos funcionando como dinheiro online. No fundo trata-se de um adiantamento feito sobre um bem ou serviço que irá ser trocado por outro bem ou serviço utilizando uma unidade digital de valor como meio facilitador da troca.
++<!--more-->
++Enquanto o dinheiro normalmente assume a forma de uma moeda nacional como notas de euro, existem muitos outros tipos de moedas: desde certidões simples (em que uma pessoa declara uma dívida a uma segunda pessoa num documento escrito) a programas mais sofisticados, tais como as milhas de companhias aéreas em que o dinheiro está representado em pontos que são acumulados como resultado de viagens. Outras comunidades instituem o que às vezes é chamado de moeda comunitária com notas de papel (ex: libra Totnes na cidade de Totnes, no Reino Unido). A ideia é promover o comércio local mantendo o dinheiro a circular dentro da economia local. Com o advento da Internet estas formas alternativas de comercio são mais viáveis, tendo em conta que as bases de dados electrónicas podem manter todos os registos necessários e assim facilitar a actividade comercial.
++Veja como tudo isto começou à muito tempo atrás nos mercados medievais:
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="259" src="http://www.youtube.com/embed/WhO_nJ4f76g?rel=0" width="460"></iframe>
++} 
++a4.save
++
++a5 = Article.create(
++  title: 'Talento por amor ou por dinheiro',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'talento-amor-dinheiro',
++  tags: [t1]
++)
++a5.body_and_extended=%q{Actualmente, usa-se o termo talento para designar habilidades inatas das pessoas, ou capacidade natural para realizar determinadas actividades. Mas nem sempre foi assim - curiosamente o talento já foi uma moeda. A conotação de talento com habilidade humana teve origem nos tempos bíblicos com a utilização duma parábola onde alguns servos recebem dinheiro em quantidades diferentes e, sem que soubessem algum tempo depois, são chamados a prestar contas do que fizeram com esse dinheiro. No fundo a parábola é utilizada para ensinar ética de trabalho comparando o dinheiro entregue aos servos com os dons que Deus entrega aos seus filhos e reforçando o dever de todos em fazer frutificar esses mesmos dons para o desenvolvimento da sua comunidade.
++<!--more-->
++Estudiosos actuais afirmam que, mesmo as habilidades consideradas inatas podem ser desenvolvidas caso haja motivação. Assim, qualquer pessoa está, por exemplo, potencialmente apta a aprender música, desde que tenha vontade e use as técnicas apropriadas ao estudo de música. Os mesmos estudiosos afirmam que, encontrar o nosso talento é essencial para uma vida equilibrada e também pode ajudar-nos a compreender quem realmente somos.
++Actualmente tendemos a identificar-nos com o nosso trabalho - basta pensar qual é a primeira pergunta que fazemos quando acabamos de conhecer alguém em festas ou eventos sociais: "O que fazes?". Normalmente gostamos de responder com uma descrição das nossas profissões: "Eu sou um professor", "Eu sou um designer".
++Se por acaso não temos um emprego remunerado, podemos até sentir uma necessidade estranha de dar uma explicação e assim evitar um desconforto social. Para muitos de nós, o trabalho ajuda a definir quem somos, até mesmo para nós próprios. Mas o que é mais estranho é isto acontecer mesmo quando esse trabalho não expressa minimamente quem realmente sentimos que somos. Isto pode ser particularmente frustrante se o nosso trabalho é insatisfatório.
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="259" src="http://www.youtube.com/embed/i5RiFLKZf7k?rel=0" width="460"></iframe>
++} 
++a5.save
++
++a6 = Article.create(
++  title: 'A eficiência moderna',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'eficiencia-moderna',
++  tags: [t1]
++)
++a6.body_and_extended=%q{Actualmente, usa-se o termo talento para designar habilidades inatas das pessoas, ou capacidade natural para realizar determinadas actividades. Mas nem sempre foi assim - curiosamente o talento já foi uma moeda. A conotação de talento com habilidade humana teve origem nos tempos bíblicos com a utilização duma parábola onde alguns servos recebem dinheiro em quantidades diferentes e, sem que soubessem algum tempo depois, são chamados a prestar contas do que fizeram com esse dinheiro. No fundo a parábola é utilizada para ensinar ética de trabalho comparando o dinheiro entregue aos servos com os dons que Deus entrega aos seus filhos e reforçando o dever de todos em fazer frutificar esses mesmos dons para o desenvolvimento da sua comunidade.
++<!--more-->
++Estudiosos actuais afirmam que, mesmo as habilidades consideradas inatas podem ser desenvolvidas caso haja motivação. Assim, qualquer pessoa está, por exemplo, potencialmente apta a aprender música, desde que tenha vontade e use as técnicas apropriadas ao estudo de música. Os mesmos estudiosos afirmam que, encontrar o nosso talento é essencial para uma vida equilibrada e também pode ajudar-nos a compreender quem realmente somos.
++Actualmente tendemos a identificar-nos com o nosso trabalho - basta pensar qual é a primeira pergunta que fazemos quando acabamos de conhecer alguém em festas ou eventos sociais: "O que fazes?". Normalmente gostamos de responder com uma descrição das nossas profissões: "Eu sou um professor", "Eu sou um designer".
++Se por acaso não temos um emprego remunerado, podemos até sentir uma necessidade estranha de dar uma explicação e assim evitar um desconforto social. Para muitos de nós, o trabalho ajuda a definir quem somos, até mesmo para nós próprios. Mas o que é mais estranho é isto acontecer mesmo quando esse trabalho não expressa minimamente quem realmente sentimos que somos. Isto pode ser particularmente frustrante se o nosso trabalho é insatisfatório.
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="259" src="http://www.youtube.com/embed/i5RiFLKZf7k?rel=0" width="460"></iframe>
++} 
++a6.save
++
++a7 = Article.create(
++  title: 'As origens do sistema monetário actual',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'origens-sistema-monetario-actual',
++  tags: [t2]
++)
++a7.body_and_extended=%q{O dinheiro é uma ferramenta usada na compra de bens, serviços, força de trabalho ou noutras transacções financeiras. Seu uso pode ser implícito ou explícito, livre ou por coerção. Acredita-se que a origem desta palavra em Portugal remete à moeda que já em tempos tivemos com o mesmo nome (o dinheiro).
++<!--more-->
++A emergência do dinheiro não depende de uma autoridade central ou governo. trata-se dum fenómeno de mercado; na prática, entretanto, os tipos de moeda mais aceites actualmente são aquelas produzidas e sancionadas pelos governos principalmente devido a imposições legais e de pagamento de impostos. Assim uma grande parte dos países possuem um padrão monetário específico - um dinheiro reconhecido oficialmente, possuindo monopólio sobre sua emissão. Algumas excepções são o euro (usado por diversos países europeus) e o dólar (utilizado em todo mundo).
++O dinheiro em si é um bem escasso e por isso está na origem de tantos problemas sociais. Muitas coisas já foram usadas como dinheiro, desde metais, conchas e até cigarros ou coisas totalmente artificiais como notas bancárias. Em épocas de escassez de dinheiro as pessoas procuram formas de contornar o problema com a introdução de moedas alternativas - o importante é não perder o poder de troca e compra essenciais para o funcionamento das comunidades. Estas moedas alternativas podem complementar o dinheiro governamental: cupons, passes, recibos, cheques, vales, notas comerciais entre outros.
++Na sociedade ocidental moderna o dinheiro é essencialmente um símbolo - uma abstracção normalmente electrónica ou digital que actualmente representa cerca de 97% da totalidade do dinheiro em circulação. No entanto bens como ouro e prata mantêm muitas das características essenciais do dinheiro.
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="315" src="http://www.youtube.com/embed/wP3ezMbr_QA?rel=0" width="420"></iframe>
++} 
++a7.save
++
++a8 = Article.create(
++  title: 'O que podemos fazer?',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'o-que-podemos-fazer',
++  tags: [tc]
++)
++a8.body_and_extended=%q{Nos últimos 60 anos, cada vez que o sistema financeiro entrou em crise as autoridades agiram injectando dinheiro para estimular a economia. Isto criou um sistema de incentivos assimétricos, considerado por muitos especialistas como um risco moral, que encorajava uma expansão de crédito cada vez maior. Um destes especialistas foi George Soros ao considerar que este sistema foi tão bem sucedido que todos passaram a acreditar naquilo que o então presidente Reagan chamava de mágica dos mercados-livres. Ao contrario George Soros designou esta característica como sendo o fundamentalismo do mercado-livre.
++<!--more-->
++Os fundamentalistas acreditam que os mercados tendem a um equilíbrio natural e que os interesses das sociedades serão alcançados se cada indivíduo lutar livremente pelos seus próprios interesses esquecendo os de todos os outros. Esta é uma concepção obviamente errónea - então não foi exactamente a intervenção nos mercados e não a acção livre dos mercados, que evitou que os sistemas financeiros entrassem em colapso. Não obstante, este fundamentalismo do mercado-livre emergiu como a ideologia económica dominante desde a década de 80, quando os mercados financeiros começaram a ser globalizados, e os Estados Unidos passaram a ter um deficit na sua conta-corrente.
++A globalização permitiu aos Estados Unidos sugar a poupança mundial, e consumir muito mais do que produzia, tendo o seu deficit de conta-corrente atingido 6,2% do PIB em 2006. Os mercados financeiros empurram os consumidores a pedir mais empréstimos, criando cada vez mais instrumentos sofisticados e condições favoráveis ao endividamento. As autoridades financeiras colaboram e incentivam este processo, intervindo - para injectar liquidez - cada vez que o sistema financeiro global se vê em risco.
++A partir de 1980 os mercados financeiros mundiais começaram a ser desregulamentados, tendo sido a sua supervisão progressivamente relaxada até virtualmente desaparecer. A super-expansão dos empréstimos descarrilou quando os instrumentos financeiros se tornaram tão complicados que as autoridades financeiras ficaram tecnicamente incapazes de avaliar os riscos desses mesmos instrumentos financeiros, e passaram a utilizar os sistemas de gestão de riscos dos próprios bancos privados. Da mesma forma, as agências de rating internacionais usaram as informações fornecidas pelos próprios bancos sofre os instrumentos financeiros para fazer as suas analises, uma chocante abdicação da sua responsabilidade segundo considerou George Soros.
++Desde que a crise se agravou e se generalizou, paralisando até o sistema de empréstimos inter-bancário mundial, muitos governos decidiram pôr de lado as suas teorias de mercado-livre e passaram a socorrer directamente e activamente os bancos privados em dificuldades. Só nos Estados Unidos logo no inicio da crise foram gastos cerca de dois triliões de dólares a tentar salvar instituições financeiras seguidas pelo maior pacote de ajuda alguma vez aprovado de setecentos biliões de dólares para socorrer os banqueiros.
++Os países da UE também despenderam várias centenas de biliões de euros na tentativa de salvar bancos privados. Em Abril de 2009, o G-20, reunido em Londres, anunciou a injecção de 1 trilião dólares na economia mundial para combater a crise financeira global. George Soros, no seu livro The New Paradigm for Financial Markets (2008), diz que estamos no meio da maior crise financeira desde a Grande Depressão de 1929 e declara que, em tese, isto poderia ter sido evitado. Considera ainda que, a ideia de fundamentalismo do mercado-livre, que hoje é a ideologia dominante, e que pressupõe que os mercados se corrigem a si mesmo; é completamente falsa porque geralmente é a intervenção das autoridades que salvam os mercados à custa dos contribuintes. Desde 1980 tivemos cinco ou seis crises financeiras: a crise bancária internacional de 1982, a falência do banco Continental Illinois em 1984 e a falência do Long-Term Capital Management, em 1998, só para citar três. De todas as vezes, foram as autoridades que salvaram os mercados, ou organizaram empresas para o fazer.
++No entanto, de alguma forma, a ideia de que os mercados tendem ao equilíbrio por si e que os seus desvios são aleatórios ganhou aceitação geral e todos estes instrumentos financeiros sofisticados foram baseados nesta aceitação. Mas é possível viver de outra forma, veja como:
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="259" src="http://www.youtube.com/embed/flL9Q9MoGwM?rel=0" width="460"></iframe>
++} 
++a8.save
++
++a9 = Article.create(
++  title: 'Sistema Financeiro Mundial',
++  author: fr.login,
++  user: fr,
++  allow_comments: 1,
++  allow_pings: 0,
++  published: 1,
++  permalink: 'sistema-financeiro-mundial',
++  tags: [t2]
++)
++a9.body_and_extended=%q{O sistema financeiro mundial antes de 1944 utilizava o ouro como padrão contra o qual as outras moedas eram indexadas. Assim as notas de papel, eram teoricamente convertíveis em ouro caso fosse feito um pedido junto dum banco. Uma alternativa histórica que foi rejeitada no século XX foi o "duplo padrão", em que o ouro e a prata eram usados para indexar as moedas.
++<!--more-->
++No fim da segunda guerra mundial, os países aliados decidiram implantar um sistema mais liberalista, e é neste contexto que se desenvolveu o Sistema de Bretton Woods, composto pelo Fundo Monetário Internacional (FMI), o Banco Internacional para Reconstrução e Desenvolvimento (BIRD) e a Organização Internacional do Comércio (OIC). Neste novo sistema os Estados Unidos deveriam manter a conversibilidade de 35 dólares numa onça de ouro - é por isto que este sistema também ficou conhecido como "padrão dólar-ouro" e foi mantido até 1971 quando os EUA anunciaram já não iriam manter a conversibilidade de dólares em ouro.
++Nasceu assim o sistema financeiro actual que utiliza moeda fiduciária, cujo valor é definido por decreto governamental envolvendo um banco central. Normalmente este dinheiro é papel-moeda, mas também pode ser simplesmente registos digitais como saldos bancários e registos de crédito, débito ou operações com cartão.
++<br/><br/>
++<iframe allowfullscreen="" frameborder="0" height="345" src="http://www.youtube.com/embed/PpjNoVRTjwY?rel=0" width="460"></iframe>
++} 
++a9.save
++
++p1=Page.create(name: "apresentacao", 
++  permalink: 'apresentacao',
++  published: 1, 
++  published_at: Time.now,
++  title: 'Apresentação', 
++  user: fr, 
++  body: %q{Na comunidade fruga estamos dedicados a viver de forma consciente e deliberada sorvendo toda a essência da vida afim de derrotar tudo o que é não-viver.
++Estamos dedicados a facilitar a conquista mais importante do ser humano - separar consciência e pensamentos.
++Perceber que não somos os nossos pensamentos, que somos aquilo que observa esses pensamentos.
++Reconhecer que as principais causas do sofrimento humano raramente são as situações que acontecem, mas sim os nossos pensamentos sobre essas situações.
++Na comunidade fruga estamos concentrados em simplificar, criando novas formas de fazer as coisas, compartilhando ideias para melhorar a nossa felicidade.
++Estamos ainda dedicados a criar um mercado de credito mutuo directo entre os nossos membros permitindo assim uma maior concentração na comunidade e nos seus objectivos esquecendo uma das maiores preocupações actuais - o problemas económicos e financeiros:
++<br/><br/>
++<iframe allowfullscreen='' frameborder='0' height='259' width='460' src='http://www.youtube.com/embed/NmFnwkwbjiI?rel=0'></iframe>
++} 
++)
++
++Dir.mkdir("#{::Rails.root.to_s}/public/files") unless File.directory?("#{::Rails.root.to_s}/public/files")
+\ No newline at end of file
+diff --git a/lib/archives_sidebar/app/views/archives_sidebar/_content.html.erb b/lib/archives_sidebar/app/views/archives_sidebar/_content.html.erb
+index 1a47443..0127f80 100644
+--- a/lib/archives_sidebar/app/views/archives_sidebar/_content.html.erb
++++ b/lib/archives_sidebar/app/views/archives_sidebar/_content.html.erb
+@@ -1,11 +1,12 @@
+ <% unless sidebar.archives.blank? %>
+-<h3 class="sidebar-title"><%= sidebar.title %></h3>
+-<ul id="archives">
+-  <% sidebar.archives.each do |month| %>
+-    <% counter = sidebar.show_count ? "<em>(#{month[:article_count]})</em>" : "" %>
+-    <li>
+-      <%= link_to"#{month[:name]} #{counter}".html_safe,  articles_by_month_path(month[:year], "%02i" % month[:month]) %>
+-    </li>
+-  <% end %>
+-</ul>
++<table class="table">
++<thead><tr><th><%= sidebar.title %></th></tr></thead>
++<tbody>
++<% sidebar.archives.each do |month| %>
++<% counter = sidebar.show_count ? "<em>(#{month[:article_count]})</em>" : "" %>
++<tr><td><%= link_to ("<button type='button' class='btn btn-sm btn-info btn-block'>" + "#{month[:name]} #{counter}" + "</button>").html_safe,  articles_by_month_path(month[:year], "%02i" % month[:month]) %></td></tr>
+ <% end %>
++</tbody>
++</table>
++</table>
++<% end %>
+\ No newline at end of file
+diff --git a/lib/popular_sidebar/app/views/popular_sidebar/_content.html.erb b/lib/popular_sidebar/app/views/popular_sidebar/_content.html.erb
+index a728a43..4b55ccb 100644
+--- a/lib/popular_sidebar/app/views/popular_sidebar/_content.html.erb
++++ b/lib/popular_sidebar/app/views/popular_sidebar/_content.html.erb
+@@ -1,11 +1,10 @@
+-<h3 class="sidebar-title"><%= sidebar.title %></h3>
+-<ul class='popular_sidebar'>
+-  <% if sidebar.popular.empty? || sidebar.popular.size == 0 %>
+-  <li class='alert'><%= t(".nothing_to_show_yet") %> !</li>
+-  <% else %>
+-    <% sidebar.popular.each do |article| %>
+-    <%= sprintf("%s (%s)", link_to_permalink(article, article.title), t(".comments", count: article.comment_count)) %>
+-    <% end %>
+-  <% end %>
+-  </li>
+-</ul>
++<% unless sidebar.popular.empty? || sidebar.popular.size == 0 %>
++<table class="table">
++<thead><tr><th><%= sidebar.title %></th></tr></thead>
++<tbody>
++<% sidebar.popular.each do |article| %>
++<tr><td><%= link_to_permalink(article, ("<button type='button' class='btn btn-sm btn-info btn-block'>" + article.title + "</button>").html_safe) %></td></tr>
++<% end %>
++</tbody>
++</table>
++<% end %>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/_article.html.erb b/themes/bootstrap/views/articles/_article.html.erb
+index 0a7e20c..943d369 100644
+--- a/themes/bootstrap/views/articles/_article.html.erb
++++ b/themes/bootstrap/views/articles/_article.html.erb
+@@ -1,11 +1,7 @@
+-<article id="article-<%= article.id %>" class='h-entry hentry h-as-note'>
+-  <h2 class='page-header p-name entry-title'><%= (controller.controller_name == 'redirect') ? article.title : link_to_permalink(article,article.title) %></h2>
+-  <div class='e-content entry-content article'>
+-    <%= render 'articles/protected_article_content', { :article => article } %>
+-    <%= render 'articles/meta', article: article %>    
+-  </div>
+-
+-  <div class='comments'>
+-    <%= render 'articles/comment_counter', article: article %>
+-  </div>
+-</article>
++<div id="article-<%= article.id %>">
++ <h3><%= (controller.controller_name == 'redirect') ? article.title : (article.title) %></h3>
++ <div>
++  <%= render 'articles/protected_article_content', article: article %>
++  <%= render 'articles/meta', article: article %>    
++ </div>
++</div>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/_comment_counter.html.erb b/themes/bootstrap/views/articles/_comment_counter.html.erb
+index 5c70c26..00e9bd7 100644
+--- a/themes/bootstrap/views/articles/_comment_counter.html.erb
++++ b/themes/bootstrap/views/articles/_comment_counter.html.erb
+@@ -1 +1 @@
+-<%= link_to t('.comments', count: article.published_comments.size), article.permalink_url %>
++<p class="text-muted text-right"><small><%= t('.comments', count: article.published_comments.size) %></small></p>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/_comment_form.html.erb b/themes/bootstrap/views/articles/_comment_form.html.erb
+index 84585a3..5b08a02 100644
+--- a/themes/bootstrap/views/articles/_comment_form.html.erb
++++ b/themes/bootstrap/views/articles/_comment_form.html.erb
+@@ -1,24 +1,19 @@
+ <%= form_tag @article.comment_url do %>
+-<div id='commentform'>
+-	<h3><%= t(".comment")%> <em><%=@article.title%></em></h3>
+-	<div class='control-group'>
+-		<%= text_field "comment", "author", :class => 'span4', :placeholder => t(".your_name") %>  	
+-	</div>
+-	<div class='control-group'>
+-		<%= text_field "comment", "email", :class => 'span4', :placeholder => t(".email_address") %>
+-	</div>
+-	<div class='control-group'>
+-		<%= text_field "comment", "url", :class => 'span4', :placeholder => t(".your_website") %>
+-	</div>
+-	<div class='control-group'>
+-		<%= text_area 'comment', 'body', :rows => 8, :class => 'span6' %>
+-	</div>
+-
+-	<% if this_blog.use_recaptcha %>
+-	<div class='control-group'><%= raw recaptcha_tags :ajax => true %></div>
+-	<% end %>
+-	<div class='form-actions'>
+-		<input type='submit' id='form-submit-button' class='btn btn-info' value="<%= t('.comment') %>" />
+-	</div>
+-</div>
++<h4><%= t(".comment")%> <em><%=@article.title %></em></h4>
++<a name="novo-comentario"></a>
++<form role="form" name="commentform">
++ <div class="row">
++ <div class="col-md-7">
++ <div class='form-group'><%= text_field "comment", "author", class: 'form-control', type: "text", placeholder: t(".your_name") %></div>
++ </div>
++ <div class="col-md-5">
++ <div class='form-group'><%= text_field "comment", "email", class: 'form-control', type: "email", placeholder: t(".email_address") %></div>
++ </div>
++ </div>
++ <div class='form-group'><%= text_area 'comment', 'body', class: 'form-control', type: "text", rows: 8 %></div>
++<% if this_blog.use_recaptcha %>
++ <div class='form-group'><%= raw recaptcha_tags :ajax => true %></div>
+ <% end %>
++ <input type='submit' id='form-submit-button' class='btn btn-primary' value="<%= t('.comment') %>" />
++</form>
++<% end %>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/_comment_list.html.erb b/themes/bootstrap/views/articles/_comment_list.html.erb
+index d4adcd9..44e29f7 100644
+--- a/themes/bootstrap/views/articles/_comment_list.html.erb
++++ b/themes/bootstrap/views/articles/_comment_list.html.erb
+@@ -1,5 +1,3 @@
+-<ul id="commentList" class="unstyled">
+-  <% if @article.published_comments.any? -%>
+-    <%= render @article.published_comments %>
+-  <% end -%>
+-</ul>
++<% if @article.published_comments.any? -%>
++<ul id="commentList" class="list-unstyled"><%= render @article.published_comments %></ul>
++<% end -%>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/_meta.html.erb b/themes/bootstrap/views/articles/_meta.html.erb
+index d3999b9..026d3b1 100644
+--- a/themes/bootstrap/views/articles/_meta.html.erb
++++ b/themes/bootstrap/views/articles/_meta.html.erb
+@@ -1,7 +1 @@
+-<div class='meta'>
+-  <p><small>
+-    <%= t(".published_on", publish_date_and_time: display_date_and_time(article.published_at), by: "<span class='p-author h-card'>#{article.user.nickname}</span>", tags: (" " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), :rel => "tag"}.sort.join(", ") unless article.tags.empty?)) %>
+-
+-  </small></p>
+-</div>
+-
++<p class="text-muted text-right"><small><%= t(".published_on") + " " + display_date_and_time(article.published_at) %><%= "<br/>" + t('.comments', count: article.published_comments.size) if article.allow_comments? %></small><%= "<br/>" + article.tags.map { |tag| link_to(("<button type='button' class='btn btn-xs btn-info'>" + tag.display_name + "</button>").html_safe, tag.permalink_url(nil, true), rel: "tag")}.sort.join(" ") unless article.tags.empty? %></p>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/index.html.erb b/themes/bootstrap/views/articles/index.html.erb
+index 6db8c91..fc89514 100644
+--- a/themes/bootstrap/views/articles/index.html.erb
++++ b/themes/bootstrap/views/articles/index.html.erb
+@@ -1,6 +1,2 @@
+-<div class='hfeed'>
+-  <%= render @articles %>
+-</div>
+-<div class='paginate'>
+-  <%= paginate(@articles)%>
+-</div>
++<div><%= render @articles %></div>
++<%= paginate(@articles) %>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/read.html.erb b/themes/bootstrap/views/articles/read.html.erb
+index 8e0c241..80cd3d7 100644
+--- a/themes/bootstrap/views/articles/read.html.erb
++++ b/themes/bootstrap/views/articles/read.html.erb
+@@ -1,44 +1,23 @@
+-<div class="article" id="article-<%= @article.id %>">
+-  <h1 class='page-header'><%= link_to_permalink(@article,@article.title) %></h1>
+-
+-  <%= @article.html(:body) %>
+-  <%= @article.html(:extended) %>
+-
++<div id="article-<%= @article.id %>">
++ <h3><%= (@article.title) %></h3>
++ <div>
+   <%= render 'articles/protected_article_content', { article: @article } %>
+   <%= render 'articles/meta', article: @article %>
+-
+-    <% if @article.user.twitter.present? %>
+-    <div class='well'>
+-      <%= t(".if_you_liked_this_article_you_can", add_twitter: link_to(t(".add_me_to_twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
+-    </div>
+-    <% end %>
+-
+-    <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
+-    <h3 class="feedback" id="commentaires">
+-      <%= render 'articles/comment_counter', article: @article %>
+-      <a href="#commentform" ref="nofollow"> &raquo;</a>
+-    </h3>
+-    <%= render "articles/comment_list" %>
+-    <% end -%>
+-
+-    <% if @article.allow_comments? %>
+-      <%= render 'articles/comment_form' %>
+-    <% else %>
+-      <div class="well well-small">
+-        <%= t(".comments_are_disabled") %>
+-      </div>
+-    <% end %>
+-
+-    <% if @article.allow_pings? -%>
+-    <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
+-    <% unless @article.published_trackbacks.blank? -%>
+-    <ol id="trackbacks" class="trackbacks">
+-      <%= render "trackback", :collection => @article.published_trackbacks %>
+-    </ol>
+-    <% end -%>
+-    <% else -%>
+-    <div class="well well-small">
+-      <%= t(".trackbacks_are_disabled") %>
+-    </div>
+-    <% end -%>
+-  </div>
++ </div>
++ <% if @article.user.twitter.present? -%>
++  <div class='well'><%= t(".if_you_liked_this_article_you_can", add_twitter: link_to(t(".add_me_to_twitter"), "http://twitter.com/#{@article.user.twitter}"))%></div>
++ <% end -%>
++ <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
++  <p><a href="#novo-comentario" ref="nofollow"><%= ("<button type='button' class='btn btn-xs btn-info'>" + content_tag(:span, '', class: 'glyphicon glyphicon-comment')+ " " + t('.comment') + "</button>").html_safe %></a></p>
++  <%= render "articles/comment_list" %>
++ <% end -%>
++ <% if @article.allow_comments? -%>
++  <%= render 'articles/comment_form' %>
++ <% end -%>
++ <% if @article.allow_pings? -%>
++  <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
++  <%- unless @article.published_trackbacks.blank? -%>
++   <ol id="trackbacks" class="trackbacks"><%= render "trackback", :collection => @article.published_trackbacks %></ol>
++  <% end -%>
++ <% end -%>
++</div>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/search.html.erb b/themes/bootstrap/views/articles/search.html.erb
+index e50238e..f33c4f5 100644
+--- a/themes/bootstrap/views/articles/search.html.erb
++++ b/themes/bootstrap/views/articles/search.html.erb
+@@ -1,19 +1,11 @@
+-<h1><%= t('.search_results_for')%> <%= h(params[:q]) %></h1>
+-
++<h3><%= t('.search_results_for')%> <%= h(params[:q]) %></h3>
+ <% @articles.each do |article| %>
+ <div id="article-<%= article.id %>">
+-  <h2><%= link_to_permalink(article,article.title) %></h2>
+-  <p><%= article.body.strip_html.slice(0, 300) %> [...]</p>
+-  <div class='author'>
+-    Le <%= l(article.published_at, format: :with_spaces) %>
+-  </div>
+-  <div class='comments'>
+-    <%= render 'articles/comment_counter', article: article %>
+-  </div>
++ <h3><%= link_to_permalink(article,article.title) %></h3>
++ <div>
++  <p class="text-justify"><%= article.body.strip_html.slice(0, 300) %> [...]</p>
++  <%= render 'articles/meta', article: article %>
++ </div>
+ </div>
+-
+ <% end %>
+-
+-<div id='paginate'>
+-<%= paginate @articles, { :previous_label => 'Previous', :next_label => 'Next'  } %>
+-</div>
++<div class='paginate'><%= paginate(@articles) %></div>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/articles/view_page.html.erb b/themes/bootstrap/views/articles/view_page.html.erb
+index 7daed45..cf26e09 100644
+--- a/themes/bootstrap/views/articles/view_page.html.erb
++++ b/themes/bootstrap/views/articles/view_page.html.erb
+@@ -1,2 +1,2 @@
+-<h1 class='page-header'><%= link_to_permalink(@page, @page.title) %></h1>
+-<%= @page.html %>
++<h3><%= link_to_permalink(@page, @page.title) %></h3>
++<p class="text-justify"><%= @page.html %></p>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/comments/_comment.html.erb b/themes/bootstrap/views/comments/_comment.html.erb
+index 49d402d..48c27ec 100644
+--- a/themes/bootstrap/views/comments/_comment.html.erb
++++ b/themes/bootstrap/views/comments/_comment.html.erb
+@@ -1,12 +1,9 @@
+ <li id="comment-<%= comment.id %>">
+-  <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+-  <h4>
+-    <%= t(".by") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+-    <%= display_date_and_time comment.created_at %>
+-  </h4>
+-    <%= comment.html %>
+-    <%- unless comment.published %>
+-    <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
+-    <%- end %>
+-  <hr />
+-</li>
++ <blockquote>
++  <%= comment.html %>
++  <footer><cite title="<%= t(".author") %>"><%= comment.url.blank? ? h(comment.author) : link_to(h(comment.author),comment.url).nofollowify %></cite> <%= t(".at") %> <%= display_date_and_time comment.created_at %></footer>
++ </blockquote> 
++ <%- unless comment.published %>
++  <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
++ <%- end %>
++</li>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/layouts/default.html.erb b/themes/bootstrap/views/layouts/default.html.erb
+index a96cc5e..089263f 100644
+--- a/themes/bootstrap/views/layouts/default.html.erb
++++ b/themes/bootstrap/views/layouts/default.html.erb
+@@ -1,62 +1,94 @@
+-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+-<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+-<head profile="http://gmpg.org/xfn/11">
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title><%= h(page_title) %></title>
+-  <%= stylesheet_link_tag "/stylesheets/theme/bootstrap.min.css", "/stylesheets/theme/style.css", "/stylesheets/user-style.css", :media => 'all' %>  
+-  <%= render 'shared/page_header' %>
+-  <style type="text/css">
+-      #logo { background: url(<%= File.join(this_blog.base_url, "images", "theme", "bg#{Random.rand(2) + 1}.jpg") %>) top left no-repeat; }
+-  </style>
++<!DOCTYPE html>
++<html lang="pt">
++<head>
++<title><%= h(page_title) %></title>
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<%= render 'shared/page_header' %>
+ </head>
+-<body>
+-  <div id="external">
+-    <div id='main'>
+-      <div class='container'>
+-        <div class="row">
+-          <div class='span1'></div>
+-          <div class='span10'>
+-            <%- if controller.controller_name == 'articles' and controller.action_name.include? 'index' %>
+-              <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
+-            <%- else %>
+-                <p id='title'><%= link_to(this_blog.blog_name, this_blog.base_url) %></p>
+-            <%- end %>
+-              <p class='subtitle'><%= this_blog.blog_subtitle %></p>
+-            </div>
+-          </div>
+-        </div>
+-        <div id='logo'></div>
+-
+-        <div class='navbar navbar-inverse'>
+-          <div class='navbar-inner'>
+-            <div class='container'>
+-              <dic class='span1'></dic>
+-              <ul class='nav'>
+-                <li><%= link_to(t('.home'), this_blog.base_url)%></li>
+-                <li><%= link_to(t('.statuses'), {:controller => 'notes'}) %></li>
+-                <%- Page.published.each do |page| %>
+-                  <li><%= link_to_permalink(page, page.title) %></li>
+-              <%- end %>
+-              </ul>
+-            </div>
+-          </div>
+-        </div>
+-
+-        <div id='page' class='container'>
+-          <div class='row'>
+-            <div class='span1'></div>
+-            <div class='span7'>
+-              <%= yield %>
+-            </div>
+-            <div id='sidebar' class='span3'>
+-              <%= render_sidebars %>
+-            </div>
+-          </div>
+-        </div>
+-        <p style='text-align: center'><small>Powered by <a href='http://publify.co'>Publify</a> – Thème <a href='http://t37.net'>Frédéric de Villamil</a> | Photo <a href='http://www.flickr.com/photos/glenn-/7194522034/'>Glenn</a></small></p>
+-      </div>
++<body style="padding-top:50px">
++<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
++ <div class="container-fluid">
++  <div class="navbar-header">
++   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#fruga-navbar-collapse-1">
++    <span class="sr-only">Toggle navigation</span>
++    <span class="icon-bar"></span>
++    <span class="icon-bar"></span>
++    <span class="icon-bar"></span>
++   </button>
++   <%= image_tag("logo/cfpt-logo.svg", alt: this_blog.blog_name, class: "navbar-brand") %>      
++  </div>
++  <div class="collapse navbar-collapse" id="fruga-navbar-collapse-1">
++   <ul class="nav navbar-nav">
++    <%- Tag.find_all_with_article_counters(3,0).each do |tag| -%>
++    <li><%= link_to tag.display_name, tag_url(tag.name) %></li>
++    <%- end -%>
++    <%- if Page.published.count == 0 %>
++    <%- Page.published.limit(0).offset(0).each do |page| -%>
++    <li><%= link_to_permalink(page, page.title) %></li>
++    <%- end -%>
++    <%- end %>
++    <%- if Tag.find_all_with_article_counters.count > 3 or Page.published.count > 0 %>
++    <li class="dropdown">
++     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= content_tag(:span, '' , class: 'glyphicon glyphicon-chevron-down') %></a>
++     <ul class="dropdown-menu">
++     <%- Tag.find_all_with_article_counters(1000,3).each do |tag| -%>
++      <li><%= link_to tag.display_name, tag_url(tag.name) %></li>
++     <%- end -%>
++     <%- Page.limit(1000).offset(0).each do |page| -%>
++      <li><%= link_to_permalink(page, page.title) %></li>
++     <%- end -%>
++     </ul>
++    </li>
++    <%- end %>
++    <%- if Note.count > 0 %>
++    <li><%= link_to(t('.statuses'), {:controller => 'notes'}) %></li>
++    <%- end %>
++   </ul>
++   <%= form_tag({controller: "articles",  action: "search"}, {method: "get", id: "sform", class: "navbar-form navbar-right", role: "search" }) do %>
++    <div class="form-group">
++     <input type="text" id="q" name="q" value="" size="15" class="form-control">
+     </div>
++    <button type="submit" class="btn btn-default"><%= t('search_sidebar.content.search') %></button>
++   <% end %>
++  </div>
++ </div>
++</nav>
++<div class='container-fluid'>
++ <div class="row">
++  <div class="col-md-12 text-hide" style="padding-top:200px;background:url(<%= File.join(this_blog.base_url, "images", "theme", "bg#{Random.rand(351) + 1}.jpg") %>) center center no-repeat;">Fruga Logo</div>
++ </div>
++ <div class="row">
++  <div class='col-md-12'>
++   <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
++   <h4><%= this_blog.blog_subtitle %></h4>
++  </div>
++ </div>
++</div>
++<div id='page' class='container-fluid'>
++ <div class='row'>
++  <div class='col-md-9'>
++   <%= yield %>
++  </div>
++  <div id='sidebar' class='col-md-3'>
++   <%= render_sidebars %>
+   </div>
++ </div>
++</div>
++<div class='container-fluid'>
++ <div class='row'>
++  <div class='col-md-3 col-md-offset-9'>
++   <%= link_to image_tag("sf.png", {alt: "Fruga no Facebook", class: "img-thumbnail"}), "http://www.facebook.com/fruga.portugal", {title: "Fruga no facebook", target: "_new"} %>
++   <%= link_to image_tag("sg.png", {alt: "Fruga no Google+", class: "img-thumbnail"}), "https://plus.google.com/107330188100365112175", {title: "Fruga no Google+", target: "_new", rel: "publisher"} %>
++   <%= link_to image_tag("st.png", {alt: "Fruga no twitter", class: "img-thumbnail"}), "http://twitter.com/frugapt", {title: "Fruga no twitter", target: "_new"} %>
++   <%= link_to image_tag("sl.png", {alt: "Fruga no linkedin", class: "img-thumbnail"}), "http://pt.linkedin.com/in/frugapt", {title: "Fruga no linkedin", target: "_new"} %>
++   <%= link_to image_tag("sy.png", {alt: "Fruga no Youtube", class: "img-thumbnail"}), "https://www.youtube.com/user/frugapt", {title: "Fruga no Youtube", target: "_new"} %>
++  </div>      
++ </div>
++ <div class='row'>
++  <div class='col-md-3 col-md-offset-9'>
++   <small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a></small>
++  </div>      
++ </div>
++</div>
+ </body>
+-</html>
++</html>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/tags/_article.html.erb b/themes/bootstrap/views/tags/_article.html.erb
+index d887db8..62905b2 100644
+--- a/themes/bootstrap/views/tags/_article.html.erb
++++ b/themes/bootstrap/views/tags/_article.html.erb
+@@ -1,10 +1,7 @@
+-<article id="article-<%= article.id %>" class='h-entry hentry h-as-note'>
+-  <h2 class='page-header p-name entry-title'><%= link_to_permalink(article,article.title) %></h2>
+-  <div class='e-content entry-content article'>
+-    <%= render 'articles/protected_article_content', { :article => article } %>
+-    <%= render 'articles/meta', article: article %>
+-  </div>
+-  <div class='comments'>
+-    <%= render 'articles/comment_counter', article: article %>
+-  </div>
+-</article>
++<div id="article-<%= article.id %>">
++ <h3><%= link_to_permalink(article,article.title) %></h3>
++ <div>
++  <%= render 'articles/protected_article_content', article: article %>
++  <%= render 'articles/meta', article: article %>    
++ </div>
++</div>
+\ No newline at end of file
+diff --git a/themes/bootstrap/views/tags/show.html.erb b/themes/bootstrap/views/tags/show.html.erb
+index 1ed8238..1684409 100644
+--- a/themes/bootstrap/views/tags/show.html.erb
++++ b/themes/bootstrap/views/tags/show.html.erb
+@@ -1,7 +1,2 @@
+-<div class='hfeed'>
+-  <%= render :partial => 'article', :collection => @articles %>
+-</div>
+-
+-<div id='paginate'>
+-<%= paginate @articles, { :previous_label => t('.previous'), :next_label => t('.next')  } %>
+-</div>
++<div><%= render @articles %></div>
++<div class='paginate'><%= paginate(@articles) %></div>
+\ No newline at end of file

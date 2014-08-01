@@ -1,0 +1,26 @@
+</div>
+</div>
+<footer>
+<div class='row'>
+<div class='col-md-12'>
+<small style="color:gray">Este email foi enviado para <%=h @user.name %> porque você está configurado para ser informado sempre que novo conteúdo é publicado na <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>. Para deixar de receber estes emails <a href="<%= @link_url = @blog.url_for(:controller => '/admin/users', :action => 'edit', :id => @user.id) %>" style=3D"color:#3366CC;text-decoration:none">altere a sua configuração</a>.</small>
+</div>      
+</div>
+<div class='row'>
+<div class='col-md-6'>
+<p>Pode encontrar-nos em:</p>	
+<ul style="list-style-type:none">
+<li><a href="https://plus.google.com/107330188100365112175" rel="publisher" title="Fruga no Google+" target="_new">Fruga no Google+</a></li>
+<li><a href="http://www.facebook.com/fruga.portugal" title="Fruga no facebook" target="_new">Fruga no facebook</a></li>
+<li><a href="http://twitter.com/frugapt" title="Fruga no twitter" target="_new">Fruga no twitter</a></li>
+<li><a href="http://pt.linkedin.com/in/frugapt" title="Fruga no linkedin" target="_new">Fruga no linkedin</a></li>
+</ul>
+</div>      
+<div class='col-md-6'>
+<small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a> - Todos os direitos reservados</a></small>
+</div>      
+</div>
+</footer>
+</div>
+</body>
+</html>

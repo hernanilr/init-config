@@ -1,0 +1,12 @@
+<% unless sidebar.archives.blank? %>
+<table class="table">
+<thead><tr><th><%= content_tag(:span, "" , class: 'glyphicon glyphicon-folder-open') + "&nbsp;&nbsp;" + sidebar.title %></th></tr></thead>
+<tbody>
+<% sidebar.archives.each do |month| %>
+<% counter = sidebar.show_count ? "&nbsp;&nbsp;<span class='badge'>#{month[:article_count]}" + "</span>" : "" %>
+<tr><td><%= link_to ("<button type='button' class='btn btn-sm btn-info btn-block'>" + "#{month[:name]}#{counter}" + "</button>").html_safe,  articles_by_month_path(month[:year], "%02i" % month[:month]) %></td></tr>
+<% end %>
+</tbody>
+</table>
+</table>
+<% end %>

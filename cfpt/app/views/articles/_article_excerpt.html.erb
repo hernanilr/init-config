@@ -1,0 +1,9 @@
+<% if article.excerpt? %>
+<p class="text-justify lead"><%= article.excerpt %></p>
+<p><%= link_to_permalink article, t(".continue_reading") %> [...]</p>
+<% else %>
+<p class="text-justify lead"><%= article.html(:body) %> [...]</p>
+<% if article.extended? %>
+<%= link_to_permalink(article, ("<button type='button' class='btn btn-xs btn-info'>" + t(".continue_reading") + "</button>").html_safe) %>
+<% end %>
+<% end %>

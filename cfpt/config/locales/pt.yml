@@ -1,0 +1,993 @@
+--- 
+pt: 
+  accounts: 
+    back_to: "Voltar para %{place}"
+    back_to_login: "Voltar para login"
+    confirm: 
+      admin: "Gestão da sua conta"
+      login: "Login:"
+      password: "Senha:"
+      proceed_to: "Prossiga para %{link}"
+      you_have_successfully_signed_up: "Inscreveu-se com sucesso"
+    create_account: "Criar conta"
+    login: 
+      error: "Entrada sem sucesso"
+      login: Login
+      password: Senha
+      remember_me: Lembra-me
+      sign_in: Entrar
+      success: "Login bem sucedido"
+      title: Login
+    logout: 
+      notice: "Registado com sucesso"
+    lost_my_password: "Perdi senha"
+    recover_password: 
+      error: "Nome de sistema ou Email não existe - confirme!"
+      notice: "Email foi enviado com sucesso com sua nova senha"
+      reset_my_password: "Repor a minha senha"
+      title: "Recuperar sua senha"
+      username_or_email: "Nome de sistema ou email"
+    signup: 
+      email: Email
+      signup: Inscrever
+      title: Inscrever
+      username: "Nome de sistema"
+  activerecord: 
+    errors: 
+      models: 
+        article: 
+          attributes: 
+            title: 
+              blank: "não pode estar em branco"
+      template: 
+        body: ""
+        header: ""
+  admin: 
+    base: 
+      cant_generate_secret: "Erro: não consigo gerar token secreto. Segurança está em risco. Por favor, altere %{checker_file}"
+      not_allowed: "Erro: não tem permissão para executar esta ação"
+      restart_application: "Por razões de segurança, deve reiniciar a sua sessão. Aproveite a sua experiência na Comunidade Fruga."
+      successfully_deleted: "Este %{name} foi eliminado com sucesso"
+      successfully_saved: "%{element} foi guardado com sucesso."
+      unsuccessfully_saved: "%{element} não pode ser guardado."
+    cache: 
+      destroy: 
+        error: "Memória não pôde ser apagada"
+        success: "Memória foi limpa"
+      show: 
+        cache: Memória
+        explaination: "Para economizar recursos, a Comunidade Fruga gera arquivos estáticos, juntamente com o seu conteúdo. Esses arquivos são eliminados automáticamente sempre que um novo artigo é criado. Mas pode, a qualquer momento, elimina-los manualmente."
+        stats: "Atualmente %{files_count} arquivos em memória com um total de %{size} Kb"
+        sweep_cache: "Limpar memória"
+    categories: 
+      new: 
+        cancel: Cancelar
+        categories: Categorias
+        description: Descrição
+        explaination: "Sua tag de categoria. Deixe em branco se não sabe o que colocar aqui"
+        keywords: Palavras-chave
+        name: Nome
+        or: ou
+        permalink: Permalink
+        save: Guardar
+        title: Título
+    content: 
+      access_granted: 
+        error: "Erro, não tem permissão para executar esta ação"
+      article_list: 
+        no_articles: "Não há artigos ainda. Por que não começar a escrever um?"
+      autosave: 
+        success: "O artigo foi guardado com sucesso"
+      categories: 
+        new_category: "Nova Categoria"
+      create: 
+        success: "O artigo foi criado com sucesso"
+      form: 
+        allow_comments: "Permitir comentários"
+        allow_comments_status: 
+          one: ativado
+          zero: inativado
+        allow_pings_status: 
+          one: ativado
+          zero: inativado
+        allow_trackbacks: "Permitir trackbacks"
+        allowed_comments_and_trackbacks: "Os comentários estão %{allow_comment} e trackbacks estão %{allow_trackback}"
+        article_filter: "Artigo filtro"
+        article_type: "Tipo de artigo"
+        cancel: Cancelar
+        categories: Categorias
+        change: Mudança
+        default: Omissão
+        images: Imagens
+        now: agora
+        ok: Ok
+        password: Senha
+        permalink: Permalink
+        preview: Visualização
+        public: Público
+        publish: Publicar
+        publish_settings: "Configurações de publicação"
+        published: Publicado
+        save: Guardar
+        save_as_draft: "Guardar como rascunho"
+        status: Estado
+        tags: Etiquetas
+        tags_explaination: "Separe as etiquetas com vírgulas. Use aspas (&quot;) em torno das etiquetas com várias palavras, por exemplo, &quot;casa da opera&quot;."
+        title: Título
+        type_your_post: "Escreva o seu artigo"
+        visibility: Visibilidade
+      index: 
+        all_articles: "Todos os artigos"
+        drafts: Rascunhos
+        filter: Filtro
+        manage_articles: "Gerenciar artigos"
+        new_article: "Novo artigo"
+        publication_date: "Data de publicação"
+        publication_pending: "Até à publicação"
+        published: Publicado
+        search: Pesquisa
+        select_a_category: "Selecione uma categoria"
+        select_an_author: "Selecione um autor"
+        title: Título
+        withdrawn: Retirado
+      update: 
+        success: "O artigo foi atualizado com sucesso"
+    dashboard: 
+      comment: 
+        by: Por
+        no_comments_yet: "Ainda não há comentários"
+      comments: 
+        latest_comments: "Últimos comentários"
+      drafts: 
+        no_drafts_yet: "Não há rescunhos ainda, por que não começa a escrever um?"
+        your_drafts: "Seus rascunhos"
+      inbound: 
+        at: em
+        at_an_unknown_date: "em uma data desconhecida"
+        inbound_links: "Links para comunidade fruga"
+        made_a_link_to_you_on: "fez um link para comunidade fruga em"
+        no_one_made_link_to_you_yet: "Ninguém fez um link para comunidade fruga ainda"
+        you_have_no_internet_connection: "Não tem conexão com a internet"
+      index: 
+        welcome_back: "Bem vindo(a), %{user_name}!"
+      overview: 
+        change_your_blog_presentation: "mudar a sua apresentação do blog"
+        customization_explain: "Também pode fazer um pouco de design, %{theme_link} ou %{sidebar_link}."
+        dashboard_explain: "Este lugar dá-lhe uma visão geral do que acontece na comunidade fruga e o que pode fazer. Talvez queira %{available_actions}"
+        enable_plugins: "permitir plugins"
+        help_explain: "Se precisar de ajuda, %{doc_link}"
+        read_our_documentation: "leia nossa documentação"
+        update_your_profile_or_change_your_password: "atualizar o seu perfil ou mudar sua senha"
+        write_a_page: "escrever uma página"
+        write_a_post: "escrever um artigo"
+      publify_version: 
+        error: "Está atrasado em pelo menos uma versão principal da Comunidade Fruga. Deve atualizar imediatamente. Instale <a href='http://publify.co/stable.tgz'>a versão mais recente</a>"
+        notice: "Há uma nova versão da Comunidade Fruga disponível. Por que não atualizar para <a href='http://publify.co/stable.tgz'>a versão mais recente</a>?"
+        warning: "Há uma nova versão da Comunidade Fruga disponível que pode conter importantes correções de bugs . Por que não atualizar para <a href='http://publify.co/stable.tgz'>a versão mais recente</a>?"
+      welcome: 
+        approved_count: 
+          one: "1 aprovado"
+          other: "%{count} aprovados"
+          zero: "não aprovado"
+        articles_and_comments_count_since: "%{articles_count} artigos e %{comments_count} comentários foram publicados desde a sua última conexão"
+        articles_count: 
+          one: "1 artigo"
+          other: "%{count} artigos"
+          zero: "nenhum artigo"
+        comments_count: 
+          one: "1 comentário"
+          other: "%{count} comentários"
+          zero: "no comment"
+        content: Conteúdo
+        drafts_count: 
+          one: "1 projecto"
+          other: "%{count} rascunhos"
+          zero: "nenhum projecto"
+        feedback: Feedback
+        notes_count: 
+          one: "1 nota"
+          other: "%{count} notas"
+          zero: "nenhuma nota"
+        pages_count: 
+          one: "1 página"
+          other: "%{count} páginas"
+          zero: "nenhuma página"
+        running_publify: "Está a usar a Comunidade Fruga %{version}"
+        spam_count: 
+          one: "1 de spam"
+          other: "%{count} spams"
+          zero: "no spam"
+        today: Hoje
+        unconfirmed_count: 
+          one: "1 não confirmado"
+          other: "%{count} não-confirmados"
+          zero: "não confirmado"
+        your_articles_count: 
+          one: "1 artigo escrito por si"
+          other: "%{count} artigos escritos por si"
+          zero: "nenhum artigo escrito por si"
+    feedback: 
+      article: 
+        action_or_other: "%{first_action} ou %{second_action}"
+        add_a_comment: "Adicionar um comentário"
+        author: Autor
+        cancel: Cancelar
+        comment: Comentário
+        comment_author: "Comentário Autor"
+        comments_for: "Comentários para %{title}"
+        email: Email
+        no_feedback: "Não há feedback ainda. Por que não começar a criar um?"
+        save: Guardar
+        status: Estado
+        url: Url
+        your_comment: "O seu comentário"
+      bulkops: 
+        error: "Não implementado"
+        success_classification: "Confirmada classificação de %{count} item(s)"
+        success_deleted: "Eliminados %{count} item(s)"
+        success_deleted_spam: "Todo o spam foi eliminado"
+        success_mark_as_ham: 
+          one: "Marcado um item como Ham"
+          other: "Marcado %{count} item(s) como Ham"
+          zero: "Nenhum item selecionado para marcar como Ham"
+        success_mark_as_spam: 
+          one: "Marcado um item como Spam"
+          other: "Marcado %{count} item(s) como Spam"
+          zero: "Nenhum item selecionado para marcar como spam"
+      button: 
+        delete_all_spam: "Eliminar todo o spam"
+        delete_checked_items: "Eliminar itens selecionados"
+        mark_checked_items_as_ham: "Mark verificado Itens como Ham"
+        mark_checked_items_as_spam: "Mark verificado Itens como Spam"
+        select_action: "Selecionar ação"
+        submit: Submeter
+      create: 
+        success: "Comentário foi criado com sucesso."
+      destroy: 
+        error: "Não foi encontrado"
+        success: Eliminado
+      edit: 
+        action_or_other: "%{first_action} ou %{second_action}"
+        comments_for: "Comentários para %{article_link}"
+        save: Guardar
+      feedback: 
+        cancel: Cancelar
+        this_comment_by_was_flagged_as_spam: "Este comentário escrito por %{author} foi marcado como spam, %{cancel_link}?"
+      index: 
+        all: Tudo
+        article: Artigo
+        comment: Comentário
+        comment_author: "Comentário Autor"
+        feedback: Feedback
+        ham: Presunto
+        no_feedback: "Não há feedback ainda. Por que não começar a criar um?"
+        presumed_ham: "Presunto Presumido"
+        presumed_spam: "Spam Presumido"
+        search: Pesquisa
+        select_all: "Selecionar todos"
+        spam: Spam
+        status: Estado
+        unapproved_comments: "Comentários não aprovados"
+      state: 
+        ham: Presunto
+        just_marked_as_ham: "Apenas Marcado como Ham"
+        just_marked_as_spam: "Apenas Marcado como spam"
+        just_presumed_ham: "Ham Apenas Presumido"
+        presumed_ham: Ham?
+        presumed_spam: Spam?
+        spam: Spam
+        unclassified: "Não classificados"
+      update: 
+        success: "O comentário foi atualizado com sucesso."
+    menu: 
+      dashboard: "Painel de instrumentos"
+      documentation: Documentação
+      help: Ajudar
+      home: Casa
+      in_page_plugins: "Em plugins página"
+      logged_in_as: "Nome de sistema: %{login}"
+      logout: Sair
+      new_article: "Novo artigo"
+      new_media: "New Media"
+      new_note: "New Note"
+      new_page: "Nova Página"
+      powered_by: "desenvolvido por"
+      profile: Perfil
+      report_a_bug: "Reportar um bug"
+      sidebar_plugins: "Plugins Sidebar"
+    notes: 
+      form: 
+        cancel: Cancelar
+        compose_new_note: "Compor nova nota"
+        fill_the_twitter_credentials: "preencher as credenciais OAuth"
+        how_to_setup_twitter: "Se quer publicar notas curtas no Twitter, precisa %{twitter_settings_link} que o Twitter lhe deu depois de %{twitter_registration_link}."
+        in_reply_to: "Em resposta a"
+        no_notes: "Não há Notas ainda. Por que não começar e criar uma?"
+        now: Agora
+        or: ou
+        permanent_link: "Link permanente"
+        posse_to_twitter: "POSSE ao twitter"
+        publish: Publicar
+        publish_at: "Publicar em"
+        publish_settings: "Configurações de publicação"
+        published: publicado
+        registered_your_application: "registou a sua aplicação"
+        tweet_id_like: "Tweet ID tipo 123456"
+      header: 
+        notes: Notas
+      show: 
+        action_or_other: "%{first_action} ou %{second_action}"
+        are_you_sure: "Tem a certeza que quer eliminar esta nota"
+        cancel: Cancelar
+        delete: Eliminar
+        destroy_confirmation: "Destruir confirmação"
+    pages: 
+      edit: 
+        success: "Página foi atualizada"
+      form: 
+        article_filter: "Artigo filtro"
+        cancel: Cancelar
+        change: Alterar
+        images: Imagens
+        offline: desligada
+        online: ligada
+        page_with_action_name: "Página %{action}"
+        permanent_link: "Link permanente"
+        publish: Publicar
+        publish_settings: "Configurações de publicação"
+        published: publicado
+        status: Estado
+        title: Título
+        type_your_post: "Escreva o seu artigo"
+      index: 
+        author: Autor
+        date: Data
+        manage_pages: "Gerir páginas"
+        new_page: "Nova Página"
+        permalink: Permalink
+        title: Título
+      new: 
+        success: "Nova Página criada"
+      pages: 
+        no_pages: "Não há páginas ainda. Por que não começar a criar uma?"
+    post_types: 
+      new: 
+        cancel: Cancelar
+        default: "Por defeito"
+        description: Descrição
+        explain: "O nome do modelo é o nome do aquivo procurado quando se chama um artigo desse tipo. Ele deve estar no seu tema em views/articles/nome_modelo.html.erb"
+        name: Nome
+        or: ou
+        post_types: "Tipos de Publicação"
+        publify_default_post_type: "Tipo de publicação por defeito"
+        save: Guardar
+        template_name: "Nome do modelo"
+    profiles: 
+      index: 
+        success: "Detalhes do utilizador atualizados"
+        your_profile: "O seu perfil"
+    redirects: 
+      destroy: 
+        success: "Redirecionamento foi eliminado com sucesso."
+      new: 
+        cancel: Cancelar
+        from: "A partir de"
+        leave_empty_to_shorten_a_link: "Deixe em branco para encurtar um link"
+        no_redirects: "Não há redirecionamentos ainda. Por que não começar a criar um?"
+        or: ou
+        redirects: Redirecionamentos
+        save: Guardar
+        to: Para
+    resources: 
+      destroy: 
+        notice: "Arquivo foi eliminado"
+      index: 
+        are_you_sure: "Tem a certeza?"
+        content_type: "Tipo de Conteúdo"
+        date: Data
+        file_size: "Tamanho do arquivo"
+        filename: "Nome do arquivo"
+        media_library: "Media Library"
+        medium_size: "Tamanho médio"
+        no_resources: "Não há recursos ainda. Por que não começar a criar um?"
+        original_size: "Tamanho original"
+        right_click_for_link: "clique com o botão direito para o link"
+        thumbnail: Miniatura
+        upload: Carregar
+        upload_a_file_to_your_site: "Carregar um arquivo para a comunidade"
+      upload: 
+        success: "Arquivo carregado"
+        warning: "Nenhum arquivo selecionado"
+    seo: 
+      index: 
+        cancel: Cancelar
+        canonical_url: "Url Canonical"
+        custom_tracking_code: "Código de acompanhamento personalizado"
+        do_not_index_categories: "Não faça categorias de índice"
+        do_not_index_tags: "Não indexar etiquetas"
+        dofollow: Dofollow
+        explain: "Aqui pode adicionar código embebido para aparecer no cabeçalho de aplicação, tais como códigos para rastreamento ou analytics."
+        explain_category_index: "Ao activar irá adicionar <code>noindex, follow</code> a cada página de categoria, removendo-as dos motores de busca e assim prevenir problemas de conteúdo duplicado"
+        explain_moderate_feedback: "Deve considerar moderar o feedback quando activar esta opção"
+        explain_rss_description: "Pode usar as seguintes etiquetas: %author% (nome do autor), %blog_url% (URL da comunidade fruga), %blog_name% (título da comunidade fruga) e %permalink_url% (um link para o artigo que deseja proteger)"
+        explain_tag_index: "Ao activar irá adicionar <code>noindex, follow</code> a cada página de etiquetas, removendo-as dos motores de busca e assim prevenir problemas de conteúdo duplicado"
+        general_settings: "Definições gerais"
+        global_settings: "As configurações globais"
+        google: Google
+        google_analytics: "Google Analytics"
+        google_webmaster_tools_validation_link: "Link de validação das Ferramentas do Google para webmasters"
+        indexing: Indexação
+        meta_description: "Meta descrição"
+        meta_keywords: "Meta palavras-chave"
+        or: ou
+        read_more_about: "Leia mais sobre %{link}"
+        robots_txt: Robots.txt
+        rss_description_message: "Descrição RSS mensagem"
+        this_will_display: "Isto irá aparecer na parte inferior de cada artigo no feed RSS"
+        update_settings: "Atualizar configurações"
+        use_canonical_url: "Use URL canônica"
+        use_dofollow_in_comments: "Use dofollow nos comentários"
+        use_meta_keywords: "Use palavras-chave meta"
+        use_rss_description: "Use descrição RSS"
+      permalinks: 
+        cancel: Cancelar
+        custom: Personalizado
+        date_and_title: "Data e título"
+        explain: "Pode criar uma estrutura de URL personalizada para os seus permalinks e arquivos. Isto pode melhorar a estética, usabilidade e compatibilidade dos seus links."
+        help_on_permalink_settings: "Ajuda nas configurações permalink"
+        month_and_title: "Mês e título"
+        or: ou
+        permalink_format: "Formato Permalink"
+        permalinks: Permalinks
+        sample: "Aqui estão alguns exemplos para poder começar."
+        title_only: "Título somente"
+        update_settings: "Atualizar configurações"
+        you_can_custom_your_url_structure: "Pode personalizar a sua estrutura de URL usando as seguintes etiquetas:"
+        your_article_day: "seu dia artigo da publicação."
+        your_article_month: "seu artigo mês de publicação."
+        your_article_slug: "seu artigo lesma. <strong>Usando esta lesma é obrigatória.</strong>"
+        your_article_year: "seu artigo ano de publicação."
+      titles: 
+        articles: Artigos
+        author_page: "Autor da página"
+        cancel: Cancelar
+        categories: Categorias
+        dated_archives: "Arquivos datados"
+        description_template: "Descrição do modelo"
+        help_on_title_settings: "Ajuda nas configurações de título"
+        home: Casa
+        or: ou
+        pages: Páginas
+        paginated_archives: "Arquivos paginado"
+        replaced_by_the_archive_date: "Substituída pela data de arquivo"
+        replaced_by_the_content_body: "Substituído pelo corpo de conteúdo"
+        replaced_with_the_article_categories: "Substituído com as categorias de artigos (separados por vírgula)"
+        replaced_with_the_article_page_title: "Substituído com o título do artigo / página"
+        replaced_with_the_article_tags: "Substituído com as etiquetas do artigos (separados por vírgula)"
+        replaced_with_the_category_tag_name: "Substituído com o nome da categoria/etiqueta"
+        replaced_with_the_current_date: "Substituído com a data atual"
+        replaced_with_the_current_month: "Substituído com o mês atual"
+        replaced_with_the_current_page_number: "Substituído com o número da página atual"
+        replaced_with_the_current_search_phrase: "Substituído com a frase de pesquisa atual"
+        replaced_with_the_current_time: "Substituído com o horário atual"
+        replaced_with_the_current_year: "Substituído com o ano em curso"
+        replaced_with_the_post_page_excerpt: "Substituído pelo excerto do artigo/página"
+        replaced_with_the_title_of_the_article_page: "Substituído com o título do artigo/página"
+        search_results: "Resultados da pesquisa"
+        short_statuses: "Mensagens curtas"
+        short_statuses_lists: "Listas de mensagens curtas"
+        tags: Etiquetas
+        the_blog_s_name: "O nome do blogue"
+        the_blog_s_tagline_description: "O slogan/descrição da comunidade fruga"
+        these_tags_can_be_included: "Estas etiquetas podem ser incluídas nos seus modelos e serão substituídas aquando da exibição da página."
+        title_settings: "Configurações Título"
+        title_template: "Template Título"
+        update_settings: "Atualizar configurações"
+    settings: 
+      display: 
+        ago: atrás
+        cancel: Cancelar
+        custom_url: "Domínio encurtador de URL personalizado"
+        custom_url_help: "Se tem um domínio personalizado para encurtamento de URL, insira-o aqui."
+        date_format: "Formato da data"
+        default_article_show: "artigos na página inicial"
+        default_feed_show: "artigos no feed"
+        display: Exibição
+        display_settings: "Configurações de exibição"
+        feed_articles: "Resumo Artigo"
+        feed_excerpts_only: "Mostrar apenas resumo do artigo no feed"
+        feed_settings: "Configurações de feed RSS"
+        feedburner_help: "Digite o seu ID do FeedBurner, se quiser usar sua conta do Google FeedBurner em vez de usar o URL do feed da Comunidade Fruga."
+        feedburner_id: "FeedBurner ID"
+        or: ou
+        publishing_options: "Opções de Publicação"
+        status_main_feed: "Mostrar estado no feed principal"
+        statuses: Estado
+        time_format: "Formato da hora"
+        update_settings: "Atualizar configurações"
+      feedback: 
+        askimet_key: "Akismet chave"
+        avatars_provider: "Provedor de Avatares"
+        cancel: Cancelar
+        captcha: Captcha
+        comments: Comentários
+        comments_filter: "Comentários filtro"
+        days: dias
+        disable_comments_after: "Desativar comentários depois"
+        disable_trackbacks_sitewide: "Desativar trackbacks em todo o site"
+        enable_comments_by_default: "Ativar comentários por defeito"
+        enable_feedback_moderation: "Ativar  moderação do feedback"
+        enable_recaptcha: "Ativar reCaptcha"
+        enable_spam_protection: "Habilitar proteção contra spam"
+        enable_trackbacks_by_default: "Ativar trackbacks por defeito"
+        explain_disable_trackbacks: "Esta configuração permite desativar trackbacks para todos os artigos. Não vai remover trackbacks existentes, mas vai evitar qualquer tentativa de adicionar novos trackbacks."
+        explain_feedback_moderation: "Pode ativar a moderação do feedback em todo a Comunidade Fruga. Se fizer isso, nenhum comentário ou trackback será publicado a menos que seja validado."
+        explain_reject_comments: "Serão regeitados automaticamente os comentários e trackbacks que contenham mais de um certo numero de links"
+        explain_spam_protection: "Habilitando a proteção contra spam obriga a comparar o endereço IP dos utilizadores, bem como o conteúdo de suas publicações contra listas negras locais e remotas. Uma boa defesa contra spam bots"
+        explain_spamfiltering: "Pode (opcionalmente) usar o serviço de filtragem de spam <a href='http://akismet.com'>Akismet</a>. Precisa registar-se no Akismet e receber uma chave API para usar este serviço. Se tiver uma chave API Akismet, insira-a aqui"
+        feedback: Feedback
+        feedback_settings: "Configurações de Feedback"
+        max_links: "Max Ligações"
+        none: nenhum
+        or: ou
+        remember_to_set_your_recaptcha: "Lembre-se de definir as chaves reCaptcha dentro config/initializers/recaptcha.rb"
+        set_to_0_to_never_disable_comments: "Defina como 0 para nunca desativar comentários"
+        set_to_0_to_never_reject_comments: "Defina como 0 para nunca rejeitar comentários"
+        spam: Spam
+        spam_protection: "Proteção contra spam"
+        trackbacks: Trackbacks
+        update_settings: "Atualizar configurações"
+      index: 
+        allow_users_to_register: "Permitir os visitantes registar-se"
+        blog_name: Nome
+        blog_subtitle: Slogan
+        blog_url: URL
+        cancel: Cancelar
+        email_address_used_to_notify: "Endereço de email usado para enviar notificações"
+        explain_allow_users_to_register: "Isto permitirá os visitantes registar-se como colaboradores, um registo que permite ter um perfil na Comunidade Fruga. Se não quiser que os visitantes se registem, pode adicioná-los via <em>Gerir utilizadores</em> em <em>Configurações</em>"
+        general_settings: "Definições gerais"
+        items_to_display_in_admin_lists: "Itens para mostrar em listas de administrador"
+        language: Língua
+        or: ou
+        source_email: "Email remetente"
+        update_settings: "Atualizar configurações"
+        users: Utilizadores
+        your_blog: "Seu blog"
+      update: 
+        success: "Configuração atualizada."
+      update_database: 
+        current_database_version: "Versão do banco de dados atual"
+        database_migration: "Migração do banco de dados"
+        information: Informações
+        may_take_a_moment: "Pode demorar um pouco"
+        migration_pending: 
+          one: "Existe uma pendente migração."
+          other: "Existem %{count} migrações pendentes."
+        migrations: Migrações
+        needed_migrations: "Migrações necessárias"
+        update_database_now: "Atualizar banco de dados agora"
+        you_are_up_to_date: "Está atualizado!"
+      write: 
+        avatar_size: "Tamanho Avatar"
+        cancel: Cancelar
+        display: Exibição
+        example: exemplo
+        explain: "Ao publicar artigos, pode enviar trackbacks para os sites referidos. Isto deve ser desativado para blogs particulares, uma vez que vai difundir informações privadas. Para blogs públicos, não há nenhum motivo para desactivar esta opção."
+        fill_the_twitter_credentials: "preencher as credenciais OAuth"
+        how_to_setup_twitter: "Se quer publicar mensagens curtas no Twitter, precisa %{twitter_settings_link} que o Twitter lhe deu depois de %{twitter_registration_link}."
+        image_medium_size: "Tamanho médio da Imagem"
+        image_thumbnail_size: "Tamanho da miniatura da Imagem"
+        latitude_longitude: "Latitude, Longitude"
+        media: Mídia
+        or: ou
+        publish: Publicar
+        publish_on_twitter: "Publicar em Twitter"
+        registered_your_application: "registou a sua aplicação"
+        send_trackbacks: "Enviar trackbacks"
+        trackbacks: Trackbacks
+        twitter_consumer_key: "Twitter chave consumidor"
+        twitter_consumer_secret: "Twitter segredo consumidor"
+        update_settings: "Atualizar configurações"
+        urls_to_ping: "URLs para ping automaticamente"
+        write: Escrever
+        your_geoloc: "a sua latitude e longitude"
+    shared: 
+      destroy: 
+        action_or_other: "%{first_action} ou %{second_action}"
+        are_you_sure: "Tem certeza de que deseja eliminar este %{element}"
+        cancel: Cancelar
+        delete: Eliminar
+        destroy_confirmation: "Destrua confirmação"
+      macros: 
+        description: Descrição
+        name: Nome
+        show_help_on_publify_macros: "Mostrar ajuda para macros"
+        tag: Etiqueta
+    sidebar: 
+      index: 
+        active_sidebar_items: "Itens da barra lateral ativos"
+        available_items: "Itens disponíveis"
+        cancel: Cancelar
+        download_more_plugins: "Pode descarregar e instalar plugins da barra lateral do nosso <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>repositório de plugins</a> oficial. Só tem que fazer o upload do diretório tema no seu diretório vendor/plugins."
+        drag_some_plugins_here: "Arraste alguns plugins aqui para preencher sua barra lateral"
+        error: "Aconteceu algo de errado. Talvez algumas das suas barras laterais não exitam e deve reinstalá-las ou removê-las manualmente."
+        explain_how_its_works: "Arrasta e solta para alterar os itens da barra lateral exibidos neste blog. Para remover itens da barra lateral basta clicar em &quot;Remover&quot;. As alterações são guardadas imediatamente, mas não ativadas até que clique no botão &quot;Publicar alterações&quot;"
+        or: ou
+        publish_changes: "Publicar alterações"
+        sidebar: Sidebar
+      target_sidebar: 
+        update: Atualizar
+    tags: 
+      edit: 
+        success: "A etiqueta foi atualizada com sucesso"
+      new: 
+        articles: Artigos
+        cancel: Cancelar
+        display_name: "Display Name"
+        manage_tags: "Gerir Etiquetas"
+        name: Nome
+        no_tags: "Não há etiquetas ainda. Por que não começar e criar uma?"
+        or: ou
+        save: Salvar
+    themes: 
+      index: 
+        active_theme: "%{name} - tema ativo"
+        choose_a_theme: "Escolha um tema"
+        use_this_theme: "Utilize este tema"
+      siwtchto: 
+        success: "Seleção de temas atualizados"
+    users: 
+      edit: 
+        edit_user: "Editar Utilizador"
+        success: "Utilizador atualizado com sucesso"
+      form: 
+        about: Biografia
+        account_settings: "Configurações da Conta"
+        aim: "Nome AIM"
+        article_filter: "Artigo filtro"
+        author_page: "página do autor"
+        avatar: "Configurações de Avatar"
+        avatar_current: "Avatar atual"
+        cancel: Cancelar
+        contact_explain: "Esta informação será exibida no seu %{link}"
+        contact_settings: "Configurações de contato"
+        display_name: "Do nome de exibição"
+        email: Email
+        fill_the_twitter_credentials: "preencher as credenciais OAuth"
+        firstname: "Primeiro nome"
+        how_to_setup_twitter: "Se quer publicar mensagens curtas no Twitter, precisa %{twitter_settings_link} que o Twitter lhe deu depois de %{twitter_registration_link}."
+        jabber: Jabber
+        lastname: Sobrenome
+        login: Login
+        msn: "MSN Messenger ID"
+        nickname: Apelido
+        notification_article: "quando um novo artigo é publicado"
+        notification_comment: "quando um novo comentário for enviado"
+        notification_email: "via e-mail"
+        notification_settings: Notificações
+        notifications: "Enviar mensagens de notificação"
+        or: ou
+        password: Senha
+        password_confirmation: "A confirmação da senha"
+        profile: Perfil
+        profile_settings: "Configurações do perfil"
+        registered_your_application: "registou a sua aplicação"
+        save: Salvar
+        status: Estado
+        twitter: "Utilizador do Twitter"
+        twitter_account: "Utilizador do Twitter"
+        twitter_help: "Conta Twitter que utiliza para publicar em"
+        twitter_oauth: "Token Twitter OAuth"
+        twitter_oauth_secret: "Twitter OAuth segredo"
+        twitter_settings: "Configurações Twitter"
+        upload: "Carregue a sua imagem de perfil"
+        upload_file: "Carregar um arquivo jpg, png ou gif"
+        user_status: "Estado do utilizador"
+        website: Site
+        yahoo: "Yahoo! Messenger ID"
+      index: 
+        articles: Artigos
+        comments: Comentários
+        email: Email
+        login: login
+        name: Nome
+        new_user: "Novo Utilizador"
+        profile: Perfil
+        state: Estado
+        users: Utilizadores
+      new: 
+        add_user: "Adicionar Utilizador"
+        success: "O utilizador foi criado com sucesso"
+  articles: 
+    archives: 
+      no_articles_found: "Não há artigos encontrados"
+      posted_in: "Publicado em"
+    article: 
+      atom_feed: "Feed Atom"
+      comment: comentário
+      comments: Comentários
+      or_trackback: "ou um %{trackback} do seu próprio site"
+      posted_by: "Publicado por"
+      read_full_article: "Leia o artigo completo"
+      this_entry_was_posted_on: "Esta entrada foi publicada em %{published_at}"
+      trackback: trackback
+      you_can_follow_entries_through_the: "Pode seguir qualquer resposta a esta publicação através do feed %{feed}"
+      you_can_leave_a: "Pode deixar um %{comment}"
+    article_excerpt: 
+      continue_reading: "continue a ler"
+    article_links: 
+      comments: 
+        one: "1 comentário"
+        other: "%{count} comentários"
+        zero: "0 comentários"
+    comment_counter: 
+      comments: 
+        one: "1 comentário"
+        other: "%{count} comentários"
+        zero: "0 comentários"
+    comment_form: 
+      comment: Comentar
+      comment_author: "Nome %{author}"
+      comment_markup_help: "Comentário Markup Ajuda"
+      comments: comentários
+      email: Email
+      email_address: Email
+      leave_a_comment: "Deixe um comentário"
+      leave_url_email: "deixar url/email"
+      markdown_enabled: "Markdown habilitado"
+      never_displayed: "nunca exibido"
+      preview_comment: "Pré-visualização comentário"
+      required: necessário
+      textile_enabled: "Habilitado Têxtil"
+      website: Site
+      your_blog: Blog
+      your_email: Email
+      your_message: Mensagem
+      your_name: Nome
+      your_website: Site
+    comment_preview: 
+      is_about_to_say: "está prestes a dizer"
+    index: 
+      next_page: "Próxima página"
+      page: página
+      previous_page: "Página anterior"
+    meta: 
+      by: por
+      comments: 
+        one: "1 comentário"
+        other: "%{count} comentários"
+        zero: "0 comentários"
+      published_on: "publicado à"
+      tags: etiquetas
+    password_form: 
+      submit: Submeter
+    read: 
+      add_me_to_twitter: "adicione-me no Twitter"
+      comment: Comentar
+      comments: Comentários
+      comments_are_disabled: "Comentários estão desativados"
+      edit: Editar
+      if_you_liked_this_article_you_can: "Se gostou deste artigo, pode %{add_twitter}"
+      leave_a_response: "Deixe uma resposta"
+      rss_feed: "Feed RSS"
+      trackbacks: Trackbacks
+      trackbacks_are_disabled: "Trackbacks estão desactivados"
+      trackbacks_for: "Trackbacks para"
+      use_the_following_link_to_trackback: "Utilize o link seguinte para o trackback do seu próprio site"
+    search: 
+      next_page: "Próxima página"
+      previous_page: "Página anterior"
+      search_results_for: "Resultados da pesquisa de"
+  authors: 
+    show: 
+      aim: "AIM:"
+      contact_information: "Informações para contato"
+      jabber: "Jabber:"
+      msn: "MSN:"
+      next_page: "Próxima página"
+      posted_in: "publicado em"
+      previous_page: "Página anterior"
+      this_author_has_not_published_any_article_yet: "Este autor não publicou qualquer artigo ainda"
+      twitter: "Twitter:"
+      web_site: "Web site:"
+      yahoo: "Yahoo:"
+  comments: 
+    comment: 
+      at: à
+      author: Autor
+      by: por
+      said: disse
+      this_comment_has_been_flagged_for_moderator_approval: "Este comentário foi sinalizada para a aprovação do moderador. Ele não irá aparecer neste blog até que o autor o aprove"
+  date: 
+    abbr_month_names: 
+      - ~
+      - Jan
+      - Fev
+      - Mar
+      - Abr
+      - Mai
+      - Jun
+      - Jul
+      - Ago
+      - Set
+      - Out
+      - Nov
+      - Dez
+    month_names: 
+      - ~
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "cerca de 1 hora"
+        other: "cerca de %{count} horas"
+      about_x_months: 
+        one: "cerca de 1 mês"
+        other: "cerca de %{count} meses"
+      about_x_years: 
+        one: "cerca de 1 ano"
+        other: "cerca de %{count} anos"
+      almost_x_years: 
+        one: "quase um ano"
+        other: "quase %{count} anos"
+      half_a_minute: "meio minuto"
+      less_than_x_minutes: 
+        one: "menos de um minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds: 
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      over_x_years: 
+        one: "mais de 1 ano"
+        other: "mais de %{count} anos"
+      x_days: 
+        one: "1 dia"
+        other: "%{count} dias"
+      x_minutes: 
+        one: "1 minuto"
+        other: "%{count} minutos"
+      x_months: 
+        one: "um mês"
+        other: "%{count} meses"
+      x_seconds: 
+        one: "um segundo"
+        other: "%{count} segundos"
+    prompts: 
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundo
+      year: Ano
+  errors: 
+    article_type_already_exist: "Este tipo de artigo já existe"
+    cant_end_with_rss_or_atom: "Não pode terminar em. Rss ou. Átomo. Estes são reservados para ser usado para alimentação de URLs"
+    no_notes_found: "Nenhuma nota foi encontrada..."
+    no_posts_found: "Nenhum artigo foi encontrado..."
+    permalink_need_a_title: "Precisa de um formato permalink com um identificador: %%title%%"
+    problem_sending_to_twitter: "Oooops aconteceu algo errado"
+    render_sidebar: "Aconteceu algo de errado. Talvez algumas das suas barras laterais não exitam e deve reinstalá-las ou removê-las manualmente."
+    you_are_not_allowed: "Erro, não tem permissão para executar esta ação"
+  helper: 
+    at: em
+  helpers: 
+    page_entries_info: 
+      more_pages: 
+        display_entries: "Exibindo <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> %{entry_name}"
+      one_page: 
+        display_entries: 
+          one: "<b>1</b> %{entry_name} encontrado"
+          other: "<b>%{count}</b> %{entry_name} encontrados"
+          zero: "Nenhum %{entry_name} encontrado"
+  langs: 
+    da_DK: Dinamarquês
+    de_DE: Alemão
+    en_US: "Inglês (EUA)"
+    es_MX: "Espanhol (México)"
+    fr_FR: Francês
+    he_IL: Hebraico
+    it_IT: Italiano
+    ja_JP: Japonês
+    lt_LT: Lituano
+    nb_NO: Norueguês
+    nl_NL: Holandes
+    pl_PL: Polaco
+    pt_BR: "Português (Brasil)"
+    pt_PT: "Português (Portugal)"
+    ro_RO: Romeno
+    ru_RU: Russo
+    zh_CN: "Chinês simples"
+    zh_TW: Chinês
+  layouts: 
+    administration: 
+      new: Novo
+    default: 
+      html: 
+        designed_by: "Desenhado por %{designed_by}"
+        home: Inicio
+        powered_by: "Desenvolvido por %{powered_by}"
+        statuses: Notas
+  meta_sidebar: 
+    content: 
+      admin: Administrador
+      powered_by_publify: "Desenvolvido por Fruga Portugal"
+      rss_feed: "RSS Feed"
+      search: Pesquisa
+  notes: 
+    index: 
+      next_page: "Próxima página"
+      previous_page: "Página anterior"
+    note: 
+      view_on_twitter: "Ver no Twitter"
+  notice: 
+    note_successfully_created: "Nota foi criado com sucesso"
+    note_successfully_updated: "Nota foi atualizado com sucesso"
+  page_sidebar: 
+    content: 
+      pages: Páginas
+  popular_sidebar: 
+    content: 
+      comments: 
+        one: "1 comentário"
+        other: "%{count} comentários"
+        zero: "0 comentários"
+      nothing_to_show_yet: "Nada para mostrar, ainda"
+  profile: 
+    admin: Administrador
+    contributor: Contribuinte
+    publisher: "Editora do blog"
+  search_sidebar: 
+    content: 
+      search: Pesquisa
+  setup: 
+    confirm: 
+      admin: administrador
+      dont_lose_the_mail_sent: "Não perca o e-mail enviado para %{email} ou não será capaz de entrar de novo"
+      login: "Login: %{user}"
+      password: "Senha: %{pass}"
+      proceed_to: "Prossiga para %{link}"
+      you_have_successfully_signed_up: "Inscreveu-se com sucesso"
+    index: 
+      blog_name: "Nome Blog"
+      save: Salvar
+      welcome_to_your_blog_setup: "Bem-vindo à sua configuração do blog"
+      your_mail: "Seu e-mail"
+    page: 
+      about: Sobre
+      body: "Este é um exemplo de uma página da Comunidade Fruga. Pode editá-la e escrever mais informações para que os seus leitores o conhecam melhor. Pode criar tantas páginas quantas quiser e gerir o seu conteúdo dentro da Comunidade Fruga."
+  tag_sidebar: 
+    content: 
+      tags: Etiquetas
+  tags: 
+    index: 
+      next_page: "Próxima página"
+      previous_page: "Página anterior"
+      there_is_no_tags: "Não há tags nenhumas"
+  time: 
+    formats: 
+      default: "%d-%m-%Y %H:%Mh"
+      letters_month_with_year: "%m %Y"
+      short: "%d-%m-%y"
+      with_spaces: "%d %B %y"
+  user: 
+    status: 
+      active: Ativo
+      inactive: Inativo
+  views: 
+    pagination: 
+      first: "&laquo; Primeira"
+      last: "Última &raquo;"
+      next: "Próxima &rsaquo;"
+      previous: "&lsaquo; Anterior"
+      truncate: "&hellip;"

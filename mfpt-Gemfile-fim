@@ -1,0 +1,21 @@
+
+# Gems para Mercado Fruga
+gem 'thin'
+gem 'rails_12factor', group: :production
+if ENV['USE_LOCAL_SPREE']
+  gem 'spree'                         ,path:   '../spree'                                ,branch: '2-1-stable'
+  gem 'spree_auth_devise'             ,path:   '../spree_auth_devise'                    ,branch: '2-1-stable'
+  gem 'spree_i18n'                    ,path:   '../spree_i18n'                           ,branch: '2-1-stable'
+  gem 'spree_store_credits'           ,path:   '../spree_store_credits'                  ,branch: '2-1-stable'
+  gem 'spree_social'                  ,path:   '../spree_social'                         ,branch: '2-1-stable'
+  gem 'spree_paypal_express'          ,path:   '../better_spree_paypal_express'          ,branch: '2-1-stable'
+  gem 'spree_simple_weight_calculator',path:   '../spree_simple_weight_calculator'       ,branch: '2-0-stable'
+else
+  gem 'spree'                         ,github: 'hernanilr/spree'                         ,branch: '2-1-stable'
+  gem 'spree_auth_devise'             ,github: 'hernanilr/spree_auth_devise'             ,branch: '2-1-stable'
+  gem 'spree_i18n'                    ,github: 'hernanilr/spree_i18n'                    ,branch: '2-1-stable'
+  gem 'spree_store_credits'           ,github: 'hernanilr/spree_store_credits'           ,branch: '2-1-stable'
+  gem 'spree_social'                  ,github: 'hernanilr/spree_social'                  ,branch: '2-1-stable'
+  gem 'spree_paypal_express'          ,github: 'hernanilr/better_spree_paypal_express'   ,branch: '2-1-stable'
+  gem 'spree_simple_weight_calculator',github: 'hernanilr/spree_simple_weight_calculator',branch: '2-0-stable'
+end

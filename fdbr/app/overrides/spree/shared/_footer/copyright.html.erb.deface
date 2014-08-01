@@ -1,0 +1,2 @@
+<!-- replace "div#footer-left" -->
+<small>Copyright &copy; 2015 <%= link_to 'Casa dos Quadros', 'http://www.casadosquadros.com.br', target: "_new" %></small>

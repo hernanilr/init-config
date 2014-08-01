@@ -1,0 +1,9 @@
+<li id="comment-<%= comment.id %>">
+ <blockquote>
+  <%= comment.html %>
+  <footer><cite title="<%= t(".author") %>"><%= comment.url.blank? ? h(comment.author) : link_to(h(comment.author),comment.url).nofollowify %></cite> <%= t(".at") %> <%= display_date_and_time comment.created_at %></footer>
+ </blockquote> 
+ <%- unless comment.published %>
+  <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
+ <%- end %>
+</li>

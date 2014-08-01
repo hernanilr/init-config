@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<%- if this_blog.geourl_location.present? %>
+<%= meta_tag 'ICBM', this_blog.geourl_location %>
+<%- end %>
+<%- if @description.present? %>
+<%= meta_tag 'description', @description %>
+<%- end %>
+<%- if stop_index_robots?(this_blog) %>
+<%= meta_tag 'robots', 'noindex, follow' %>
+<%- end %>
+<%- if this_blog.google_verification.present? %>
+<%= meta_tag 'google-site-verification', this_blog.google_verification %>
+<%- end %>
+<meta name="generator" content="Fruga Portugal <%= PUBLIFY_VERSION %>" />
+<%= show_meta_keyword %>
+<link rel="apple-touch-icon" href="<%= File.join(this_blog.base_url, 'apple-touch-icon.png') %>">
+<link rel="icon" type="image/x-icon" href="<%= File.join(this_blog.base_url, 'favicon.ico') %>">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml', :action => 'rsd' %>" />
+<%- if feed_atom %>
+<link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>" />
+<%- end %>
+<%- if feed_rss %>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>" />
+<%- end %>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<%= stylesheet_link_tag :cfpt %>
+<%- if this_blog.use_canonical_url %>
+<%= use_canonical %>
+<%- end %>
+<%= javascript_include_tag :cfpt %>
+<%- if @content_for_script.present? %>
+<script type="text/javascript"><%= @content_for_script %></script>
+<%- end %>
+<%- if this_blog.custom_tracking_field.present? %>
+<%= this_blog.custom_tracking_field %>
+<%- end %>
+<%= page_header_includes %>
+<%= google_analytics %>
+<%= meta_tag 'og:site_name', this_blog.blog_name %>
+<%= meta_tag 'og:title', @article ? @article.title : @page_title %>

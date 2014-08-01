@@ -1,0 +1,19 @@
+<%= form_tag @article.comment_url do %>
+<h4><%= t(".comment")%> <em><%=@article.title %></em></h4>
+<a name="novo-comentario"></a>
+<form role="form" name="commentform">
+ <div class="row">
+ <div class="col-md-7">
+ <div class='form-group'><%= text_field "comment", "author", class: 'form-control', type: "text", placeholder: t(".your_name") %></div>
+ </div>
+ <div class="col-md-5">
+ <div class='form-group'><%= text_field "comment", "email", class: 'form-control', type: "email", placeholder: t(".email_address") %></div>
+ </div>
+ </div>
+ <div class='form-group'><%= text_area 'comment', 'body', class: 'form-control', type: "text", rows: 8 %></div>
+<% if this_blog.use_recaptcha %>
+ <div class='form-group'><%= raw recaptcha_tags :ajax => true %></div>
+<% end %>
+ <input type='submit' id='form-submit-button' class='btn btn-primary' value="<%= t('.comment') %>" />
+</form>
+<% end %>

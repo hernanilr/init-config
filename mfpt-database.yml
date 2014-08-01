@@ -1,0 +1,25 @@
+login: &login
+  adapter: postgresql
+  host: localhost
+  port: 5432
+  username: postgres
+  password:
+
+connection: &connection
+  encoding: unicode
+  pool: 5
+
+development:
+  database: mfpt_dev
+  <<: *login
+  <<: *connection
+
+test:
+  database: mfpt_tests
+  <<: *login
+  <<: *connection
+
+production:
+  database: mfpt
+  <<: *login
+  <<: *connection

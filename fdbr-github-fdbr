@@ -1,0 +1,137 @@
+HTTP/1.1 204 No Content
+Server: GitHub.com
+Date: Wed, 30 Jul 2014 15:11:17 GMT
+Status: 204 No Content
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4991
+X-RateLimit-Reset: 1406734821
+X-GitHub-Media-Type: github.v3
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: deny
+Content-Security-Policy: default-src 'none'
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+X-GitHub-Request-Id: BC51DC71:29B7:154774E:53D90B15
+Strict-Transport-Security: max-age=31536000; includeSubdomains
+X-Content-Type-Options: nosniff
+Vary: Accept-Encoding
+X-Served-By: a8d8e492d6966f0c23dee2eed64c678a
+
+HTTP/1.1 201 Created
+Server: GitHub.com
+Date: Wed, 30 Jul 2014 15:11:38 GMT
+Content-Type: application/json; charset=utf-8
+Status: 201 Created
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4990
+X-RateLimit-Reset: 1406734821
+Cache-Control: private, max-age=60, s-maxage=60
+ETag: "4f5afedfdfb5255ffef4b0c8cc983c59"
+Location: https://api.github.com/repos/fenixdecorare/fdbr
+Vary: Accept, Authorization, Cookie, X-GitHub-OTP
+X-GitHub-Media-Type: github.v3
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: deny
+Content-Security-Policy: default-src 'none'
+Content-Length: 5098
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+X-GitHub-Request-Id: BC51DC71:2B9A:E2A4:53D90B2A
+Strict-Transport-Security: max-age=31536000; includeSubdomains
+X-Content-Type-Options: nosniff
+
+{
+  "id": 22432943,
+  "name": "fdbr",
+  "full_name": "fenixdecorare/fdbr",
+  "owner": {
+    "login": "fenixdecorare",
+    "id": 8298988,
+    "avatar_url": "https://avatars.githubusercontent.com/u/8298988?v=1",
+    "gravatar_id": "148479c79d1749c4fa55f77b9a2d0e0f",
+    "url": "https://api.github.com/users/fenixdecorare",
+    "html_url": "https://github.com/fenixdecorare",
+    "followers_url": "https://api.github.com/users/fenixdecorare/followers",
+    "following_url": "https://api.github.com/users/fenixdecorare/following{/other_user}",
+    "gists_url": "https://api.github.com/users/fenixdecorare/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/fenixdecorare/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/fenixdecorare/subscriptions",
+    "organizations_url": "https://api.github.com/users/fenixdecorare/orgs",
+    "repos_url": "https://api.github.com/users/fenixdecorare/repos",
+    "events_url": "https://api.github.com/users/fenixdecorare/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/fenixdecorare/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "private": false,
+  "html_url": "https://github.com/fenixdecorare/fdbr",
+  "description": "Loja Casa dos Quadros",
+  "fork": false,
+  "url": "https://api.github.com/repos/fenixdecorare/fdbr",
+  "forks_url": "https://api.github.com/repos/fenixdecorare/fdbr/forks",
+  "keys_url": "https://api.github.com/repos/fenixdecorare/fdbr/keys{/key_id}",
+  "collaborators_url": "https://api.github.com/repos/fenixdecorare/fdbr/collaborators{/collaborator}",
+  "teams_url": "https://api.github.com/repos/fenixdecorare/fdbr/teams",
+  "hooks_url": "https://api.github.com/repos/fenixdecorare/fdbr/hooks",
+  "issue_events_url": "https://api.github.com/repos/fenixdecorare/fdbr/issues/events{/number}",
+  "events_url": "https://api.github.com/repos/fenixdecorare/fdbr/events",
+  "assignees_url": "https://api.github.com/repos/fenixdecorare/fdbr/assignees{/user}",
+  "branches_url": "https://api.github.com/repos/fenixdecorare/fdbr/branches{/branch}",
+  "tags_url": "https://api.github.com/repos/fenixdecorare/fdbr/tags",
+  "blobs_url": "https://api.github.com/repos/fenixdecorare/fdbr/git/blobs{/sha}",
+  "git_tags_url": "https://api.github.com/repos/fenixdecorare/fdbr/git/tags{/sha}",
+  "git_refs_url": "https://api.github.com/repos/fenixdecorare/fdbr/git/refs{/sha}",
+  "trees_url": "https://api.github.com/repos/fenixdecorare/fdbr/git/trees{/sha}",
+  "statuses_url": "https://api.github.com/repos/fenixdecorare/fdbr/statuses/{sha}",
+  "languages_url": "https://api.github.com/repos/fenixdecorare/fdbr/languages",
+  "stargazers_url": "https://api.github.com/repos/fenixdecorare/fdbr/stargazers",
+  "contributors_url": "https://api.github.com/repos/fenixdecorare/fdbr/contributors",
+  "subscribers_url": "https://api.github.com/repos/fenixdecorare/fdbr/subscribers",
+  "subscription_url": "https://api.github.com/repos/fenixdecorare/fdbr/subscription",
+  "commits_url": "https://api.github.com/repos/fenixdecorare/fdbr/commits{/sha}",
+  "git_commits_url": "https://api.github.com/repos/fenixdecorare/fdbr/git/commits{/sha}",
+  "comments_url": "https://api.github.com/repos/fenixdecorare/fdbr/comments{/number}",
+  "issue_comment_url": "https://api.github.com/repos/fenixdecorare/fdbr/issues/comments/{number}",
+  "contents_url": "https://api.github.com/repos/fenixdecorare/fdbr/contents/{+path}",
+  "compare_url": "https://api.github.com/repos/fenixdecorare/fdbr/compare/{base}...{head}",
+  "merges_url": "https://api.github.com/repos/fenixdecorare/fdbr/merges",
+  "archive_url": "https://api.github.com/repos/fenixdecorare/fdbr/{archive_format}{/ref}",
+  "downloads_url": "https://api.github.com/repos/fenixdecorare/fdbr/downloads",
+  "issues_url": "https://api.github.com/repos/fenixdecorare/fdbr/issues{/number}",
+  "pulls_url": "https://api.github.com/repos/fenixdecorare/fdbr/pulls{/number}",
+  "milestones_url": "https://api.github.com/repos/fenixdecorare/fdbr/milestones{/number}",
+  "notifications_url": "https://api.github.com/repos/fenixdecorare/fdbr/notifications{?since,all,participating}",
+  "labels_url": "https://api.github.com/repos/fenixdecorare/fdbr/labels{/name}",
+  "releases_url": "https://api.github.com/repos/fenixdecorare/fdbr/releases{/id}",
+  "created_at": "2014-07-30T15:11:38Z",
+  "updated_at": "2014-07-30T15:11:38Z",
+  "pushed_at": "2014-07-30T15:11:38Z",
+  "git_url": "git://github.com/fenixdecorare/fdbr.git",
+  "ssh_url": "git@github.com:fenixdecorare/fdbr.git",
+  "clone_url": "https://github.com/fenixdecorare/fdbr.git",
+  "svn_url": "https://github.com/fenixdecorare/fdbr",
+  "homepage": null,
+  "size": 0,
+  "stargazers_count": 0,
+  "watchers_count": 0,
+  "language": null,
+  "has_issues": true,
+  "has_downloads": true,
+  "has_wiki": true,
+  "forks_count": 0,
+  "mirror_url": null,
+  "open_issues_count": 0,
+  "forks": 0,
+  "open_issues": 0,
+  "watchers": 0,
+  "default_branch": "master",
+  "permissions": {
+    "admin": true,
+    "push": true,
+    "pull": true
+  },
+  "network_count": 0,
+  "subscribers_count": 1
+}

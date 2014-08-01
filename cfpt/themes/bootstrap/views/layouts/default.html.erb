@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<title><%= h(page_title) %></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%= render 'shared/page_header' %>
+</head>
+<body style="padding-top:50px">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+ <div class="container-fluid">
+  <div class="navbar-header">
+   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#fruga-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+   </button>
+   <%= image_tag("logo/cfpt-logo.svg", alt: this_blog.blog_name, class: "navbar-brand") %>      
+  </div>
+  <div class="collapse navbar-collapse" id="fruga-navbar-collapse-1">
+   <ul class="nav navbar-nav">
+    <%- Tag.find_all_with_article_counters(3,0).each do |tag| -%>
+    <li><%= link_to tag.display_name, tag_url(tag.name) %></li>
+    <%- end -%>
+    <%- if Page.published.count == 0 %>
+    <%- Page.published.limit(0).offset(0).each do |page| -%>
+    <li><%= link_to_permalink(page, page.title) %></li>
+    <%- end -%>
+    <%- end %>
+    <%- if Tag.find_all_with_article_counters.count > 3 or Page.published.count > 0 %>
+    <li class="dropdown">
+     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= content_tag(:span, '' , class: 'glyphicon glyphicon-chevron-down') %></a>
+     <ul class="dropdown-menu">
+     <%- Tag.find_all_with_article_counters(1000,3).each do |tag| -%>
+      <li><%= link_to tag.display_name, tag_url(tag.name) %></li>
+     <%- end -%>
+     <%- Page.limit(1000).offset(0).each do |page| -%>
+      <li><%= link_to_permalink(page, page.title) %></li>
+     <%- end -%>
+     </ul>
+    </li>
+    <%- end %>
+    <%- if Note.count > 0 %>
+    <li><%= link_to(t('.statuses'), {:controller => 'notes'}) %></li>
+    <%- end %>
+   </ul>
+   <%= form_tag({controller: "articles",  action: "search"}, {method: "get", id: "sform", class: "navbar-form navbar-right", role: "search" }) do %>
+    <div class="form-group">
+     <input type="text" id="q" name="q" value="" size="15" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-default"><%= content_tag(:span, '' , class: 'glyphicon glyphicon-search') %></button>
+   <% end %>
+  </div>
+ </div>
+</nav>
+<div class='container-fluid'>
+ <div class="row">
+  <div class="col-md-12 text-hide" style="padding-top:200px;background:url(<%= File.join(this_blog.base_url, "images", "theme", "bg#{Random.rand(351) + 1}.jpg") %>) center center no-repeat;">Fruga Logo</div>
+ </div>
+ <div class="row">
+  <div class='col-md-12'>
+   <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
+   <h4><%= this_blog.blog_subtitle %></h4>
+  </div>
+ </div>
+</div>
+<div id='page' class='container-fluid'>
+ <div class='row'>
+  <div class='col-md-9'>
+   <%= yield %>
+  </div>
+  <div id='sidebar' class='col-md-3'>
+   <%= render_sidebars %>
+  </div>
+ </div>
+</div>
+<div class='container-fluid'>
+ <div class='row'>
+  <div class='col-md-3 col-md-offset-9'>
+   <%= link_to image_tag("sf.png", {alt: "Fruga no Facebook", class: "img-thumbnail"}), "http://www.facebook.com/fruga.portugal", {title: "Fruga no facebook", target: "_new"} %>
+   <%= link_to image_tag("sg.png", {alt: "Fruga no Google+", class: "img-thumbnail"}), "https://plus.google.com/107330188100365112175", {title: "Fruga no Google+", target: "_new", rel: "publisher"} %>
+   <%= link_to image_tag("st.png", {alt: "Fruga no twitter", class: "img-thumbnail"}), "http://twitter.com/frugapt", {title: "Fruga no twitter", target: "_new"} %>
+   <%= link_to image_tag("sl.png", {alt: "Fruga no linkedin", class: "img-thumbnail"}), "http://pt.linkedin.com/in/frugapt", {title: "Fruga no linkedin", target: "_new"} %>
+   <%= link_to image_tag("sy.png", {alt: "Fruga no Youtube", class: "img-thumbnail"}), "https://www.youtube.com/user/frugapt", {title: "Fruga no Youtube", target: "_new"} %>
+  </div>      
+ </div>
+ <div class='row'>
+  <div class='col-md-3 col-md-offset-9'>
+   <small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a></small>
+  </div>      
+ </div>
+</div>
+</body>
+</html>

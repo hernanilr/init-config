@@ -1,0 +1,11 @@
+<h5><%= t('.search_results_for')%>: <em><%= h(params[:q]) %></em></h5>
+<% @articles.each do |article| %>
+<div id="article-<%= article.id %>">
+ <h4><%= (article.title) %></h4>
+ <div>
+  <%= render 'articles/article_excerpt', article: article %>
+  <%= render 'articles/meta', article: article %>
+ </div>
+</div>
+<% end %>
+<%= paginate(@articles) %>

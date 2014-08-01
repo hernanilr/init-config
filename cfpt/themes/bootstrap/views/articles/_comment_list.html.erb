@@ -1,0 +1,3 @@
+<% if @article.published_comments.any? -%>
+<ul id="commentList" class="list-unstyled"><%= render @article.published_comments %></ul>
+<% end -%>

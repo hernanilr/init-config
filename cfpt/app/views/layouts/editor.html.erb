@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="imagetoolbar" content="no" />
+<%= stylesheet_link_tag 'publify_admin' %>
+<%= javascript_include_tag 'publify_admin' %>
+<style type="text/css">
+  #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'ubuntu.ttf') %>) format('truetype');
+  }
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'ubuntu-bold.ttf') %>) format('truetype');
+  }
+</style>
+</head>
+<body>
+  <div id='main'>
+    <%= yield  %>
+  </div>
+</body>
+</html>

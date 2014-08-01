@@ -1,0 +1,23 @@
+<div id="article-<%= @article.id %>">
+ <h4><%= (@article.title) %></h4>
+ <div>
+  <%= render 'articles/protected_article_content', { article: @article } %>
+  <%= render 'articles/meta', article: @article %>
+ </div>
+ <% if @article.user.twitter.present? -%>
+  <div class='well'><%= t(".if_you_liked_this_article_you_can", add_twitter: link_to(t(".add_me_to_twitter"), "http://twitter.com/#{@article.user.twitter}"))%></div>
+ <% end -%>
+ <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
+  <p><a href="#novo-comentario" ref="nofollow"><%= ("<button type='button' class='btn btn-xs btn-info'>" + content_tag(:span, '', class: 'glyphicon glyphicon-comment')+ " " + t('.comment') + "</button>").html_safe %></a></p>
+  <%= render "articles/comment_list" %>
+ <% end -%>
+ <% if @article.allow_comments? -%>
+  <%= render 'articles/comment_form' %>
+ <% end -%>
+ <% if @article.allow_pings? -%>
+  <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
+  <%- unless @article.published_trackbacks.blank? -%>
+   <ol id="trackbacks" class="trackbacks"><%= render "trackback", :collection => @article.published_trackbacks %></ol>
+  <% end -%>
+ <% end -%>
+</div>

@@ -1,0 +1,10 @@
+<% unless sidebar.popular.empty? || sidebar.popular.size == 0 %>
+<table class="table">
+<thead><tr><th><%= content_tag(:span, "" , class: 'glyphicon glyphicon-star') + "&nbsp;&nbsp;" + sidebar.title %></th></tr></thead>
+<tbody>
+<% sidebar.popular.each do |article| %>
+<tr><td><%= link_to_permalink(article, ("<button type='button' class='btn btn-sm btn-info btn-block'>" + article.title + "</button>").html_safe) %></td></tr>
+<% end %>
+</tbody>
+</table>
+<% end %>

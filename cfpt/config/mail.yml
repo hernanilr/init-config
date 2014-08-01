@@ -1,0 +1,9 @@
+method: :smtp
+settings:
+  :address: smtp.gmail.com
+  :port: 587
+  :domain: fruga.pt
+  :enable_starttls_auto: true
+  :authentication:  :plain
+  :user_name: <%= ENV['SMTP_FRUGA'] %>
+  :password: <%= ENV['SMTP_FRUGA_PASSWORD'] %>

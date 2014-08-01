@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<title><%=h page_title %></title>
+<%= render 'shared/page_header' %>
+</head>
+<body>
+  <div id="header">
+    <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
+    <p class="desc"><%= this_blog.blog_subtitle %></p>
+  </div>
+  <div id="page">
+    <div id="content">
+      <%= yield %>
+    </div>
+    <div id="sidebar">
+      <%= render_sidebars %>
+    </div>
+    <div id="footer">
+      <span id='legal'><small>Copyright &copy; 2014 <a href='http://www.fruga.pt'>Fruga Portugal</a> - Todos os direitos reservados | <a href='http://fruga.herokuapp.com/contact-us'>Contacte-nos</a></small></span>
+    </div>
+  </div>
+</body>
+</html>
+

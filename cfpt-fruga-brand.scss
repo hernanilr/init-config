@@ -1,0 +1,27 @@
+
+/* valores nao alterado - so para calculos */
+$navbar-height: 50px;
+$font-size-base: 14px;
+
+$brand-primary: #3d8e8e;
+$brand-success: #669933;
+$brand-info:    #b2e5e5;
+$brand-warning: #ff9900;
+$brand-danger:  #e45353;
+
+/* all btn have #fff (white) text color these need darker */ 
+$btn-default-color: #3f3f3f;
+$btn-info-color: $btn-default-color;
+
+$navbar-padding-vertical: (($navbar-height - floor(($font-size-base * 2.2))) / 2);
+$navbar-default-link-hover-bg: $brand-info;
+
+$blockquote-font-size: ceil(($font-size-base * 0.9));
+$blockquote-border-color: $brand-info;
+
+$headings-font-weight: bold;
+$font-family-sans-serif: "Ubuntu", sans-serif;
+$font-family-serif: "Arvo", serif;
+$font-family-monospace: "Ubuntu Mono", monospace;
+
+@import "bootstrap";

@@ -1,0 +1,15 @@
+
+# Gems para Fenix Decorare
+gem 'thin'
+gem 'rails_12factor', group: :production
+if ENV['USE_LOCAL_SPREE']
+  gem 'spree'            ,path:   '../spree'                       ,branch: '2-3-stable'
+  gem 'spree_auth_devise',path:   '../spree_auth_devise'           ,branch: '2-3-stable'
+  gem 'spree_i18n'       ,path:   '../spree_i18n'                  ,branch: '2-3-stable'
+  gem 'spree_social'     ,path:   '../spree_social'                ,branch: '2-3-stable'
+else
+  gem 'spree'            ,github: 'fenixdecorare/spree'            ,branch: '2-3-stable'
+  gem 'spree_auth_devise',github: 'fenixdecorare/spree_auth_devise',branch: '2-3-stable'
+  gem 'spree_i18n'       ,github: 'fenixdecorare/spree_i18n'       ,branch: '2-3-stable'
+  gem 'spree_social'     ,github: 'fenixdecorare/spree_social'     ,branch: '2-3-stable'
+end

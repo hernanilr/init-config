@@ -2,7 +2,6 @@ login: &login
   adapter: postgresql
   host: localhost
   port: 5432
-  username: postgres
   password:
 
 connection: &connection
@@ -11,11 +10,13 @@ connection: &connection
 
 development:
   database: fdbr_dev
+  username: postgres
   <<: *login
   <<: *connection
 
 test:
   database: fdbr_tests
+  username: postgres
   <<: *login
   <<: *connection
 

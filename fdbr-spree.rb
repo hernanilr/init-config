@@ -7,8 +7,8 @@
 # config.setting_name = 'new value'
 Spree.config do |config|
 
-  config.admin_interface_logo = 'logo/lcdq-admin.png'
-  config.logo = 'logo/lcdq.png'
+  config.admin_interface_logo = 'logo/fdbr-admin.png'
+  config.logo = 'logo/fdbr.png'
   config.layout = 'spree/layouts/spree_application'
 
   config.address_requires_state = true # should state/state_name be required
@@ -24,7 +24,7 @@ Spree.config do |config|
   config.always_include_confirm_step = false # Ensures confirmation step is always in checkout_progress bar, but does not force a confirm step if your payment methods do not support it.
   config.always_put_site_name_in_title = true
   config.auto_capture =  false # automatically capture the credit card (as opposed to just authorize and capture later)
-  config.check_for_spree_alerts =  true
+  config.check_for_spree_alerts =  false
   config.checkout_zone =  nil # replace with the name of a zone if you would like to limit the countries
   config.company =  false # Request company field for billing and shipping addr
   config.currency =  "BRL"
@@ -68,7 +68,7 @@ Spree.config do |config|
 
   # Default mail headers settings
   config.send_core_emails = true
-  config.mails_from = 'fenixdecorare@gmail.com'
+  config.mails_from = 'contato@casadosquadros.com.br'
   #config.mail_bcc = nil
   #config.intercept_email = nil
 
@@ -91,7 +91,7 @@ store.url = 'loja.casadosquadros.com.br'
 store.meta_description = 'Decoração de espaços particulares ou empresariais com uma excelente proposta de produtos e serviços com qualidade e profissionalismo'
 store.meta_keywords = 'fenix, decorare, quadros, decoração, excelencia, profissionalismo, qualidade'
 store.seo_title = 'Casa dos Quadros - Decoração com requinte'
-store.mail_from_address = 'fenixdecorare@gmail.com'
+store.mail_from_address = 'fenixdcbr@gmail.com'
 store.default_currency = "BRL"
 store.code = "fenix"
 store.save!
@@ -99,5 +99,5 @@ store.save!
 Spree.user_class = "Spree::User"
 
 # Configuracao de linguas
-SpreeI18n::Config.available_locales = [:'pt-BR', :en]
-SpreeI18n::Config.supported_locales = [:'pt-BR', :en]
+SpreeI18n::Config.available_locales = [:'pt-BR']
+SpreeI18n::Config.supported_locales = [:'pt-BR']

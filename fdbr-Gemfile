@@ -32,7 +32,7 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -42,8 +42,9 @@ gem 'spring',        group: :development
 
 
 # Gems para Fenix Decorare
-gem 'thin'
 gem 'rails_12factor', group: :production
+gem 'rack-timeout'
+gem 'thin', group: :development
 if ENV['USE_LOCAL_SPREE']
   gem 'spree'            ,path:   '../spree'                       ,branch: '2-3-stable'
   gem 'spree_auth_devise',path:   '../spree_auth_devise'           ,branch: '2-3-stable'

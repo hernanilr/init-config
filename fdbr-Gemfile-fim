@@ -1,7 +1,8 @@
 
 # Gems para Fenix Decorare
-gem 'thin'
 gem 'rails_12factor', group: :production
+gem 'rack-timeout'
+gem 'thin', group: :development
 if ENV['USE_LOCAL_SPREE']
   gem 'spree'            ,path:   '../spree'                       ,branch: '2-3-stable'
   gem 'spree_auth_devise',path:   '../spree_auth_devise'           ,branch: '2-3-stable'

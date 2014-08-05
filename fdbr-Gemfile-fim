@@ -4,13 +4,15 @@ gem 'rails_12factor', group: :production
 gem 'rack-timeout'
 gem 'thin', group: :development
 if ENV['USE_LOCAL_SPREE']
-  gem 'spree'            ,path:   '../spree'                       ,branch: '2-3-stable'
-  gem 'spree_auth_devise',path:   '../spree_auth_devise'           ,branch: '2-3-stable'
-  gem 'spree_i18n'       ,path:   '../spree_i18n'                  ,branch: '2-3-stable'
-  gem 'spree_social'     ,path:   '../spree_social'                ,branch: '2-3-stable'
+  gem 'spree'                   ,path:   '../spree'                              ,branch: '2-3-stable'
+  gem 'spree_auth_devise'       ,path:   '../spree_auth_devise'                  ,branch: '2-3-stable'
+  gem 'spree_i18n'              ,path:   '../spree_i18n'                         ,branch: '2-3-stable'
+  gem 'spree_bootstrap_frontend',path:   '../spree_bootstrap_frontend'           ,branch: '2-3-stable'
+  gem 'spree_social'            ,path:   '../spree_social'                       ,branch: '2-3-stable'
 else
-  gem 'spree'            ,github: 'fenixdecorare/spree'            ,branch: '2-3-stable'
-  gem 'spree_auth_devise',github: 'fenixdecorare/spree_auth_devise',branch: '2-3-stable'
-  gem 'spree_i18n'       ,github: 'fenixdecorare/spree_i18n'       ,branch: '2-3-stable'
-  gem 'spree_social'     ,github: 'fenixdecorare/spree_social'     ,branch: '2-3-stable'
+  gem 'spree'                   ,github: 'fenixdecorare/spree'                   ,branch: '2-3-stable'
+  gem 'spree_auth_devise'       ,github: 'fenixdecorare/spree_auth_devise'       ,branch: '2-3-stable'
+  gem 'spree_i18n'              ,github: 'fenixdecorare/spree_i18n'              ,branch: '2-3-stable'
+  gem 'spree_bootstrap_frontend',github: 'fenixdecorare/spree_bootstrap_frontend',branch: '2-3-stable'
+  gem 'spree_social'            ,github: 'fenixdecorare/spree_social'            ,branch: '2-3-stable'
 end

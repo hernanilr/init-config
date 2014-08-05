@@ -25,7 +25,7 @@ Spree::State.delete_all
 
 br=Spree::Country.find_by_name("Brazil")
 Spree::Config[:address_requires_state]=true
-Spree::Config[:admin_interface_logo]='logo/fdbr-admin.png'
+Spree::Config[:admin_interface_logo]='logo/logo-loja-casadosquadros-admin.png'
 Spree::Config[:admin_products_per_page]=10
 Spree::Config[:allow_backorder_shipping]=false # should only be true if you don't need to track inventory
 Spree::Config[:allow_checkout_on_gateway_error]=false
@@ -53,7 +53,7 @@ Spree::Config[:dismissed_spree_alerts]=''
 Spree::Config[:hide_cents]=false
 Spree::Config[:last_check_for_spree_alerts]=nil
 Spree::Config[:layout]='spree/layouts/spree_application'
-Spree::Config[:logo]='logo/fdbr.png'
+Spree::Config[:logo]='logo/logo-loja-casadosquadros.png'
 Spree::Config[:max_level_in_taxons_menu]=1 # maximum nesting level in taxons menu
 Spree::Config[:orders_per_page]=15
 Spree::Config[:properties_per_page]=15

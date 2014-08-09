@@ -36,7 +36,7 @@ Spree::Config[:allow_ssl_in_staging]=false
 Spree::Config[:alternative_billing_phone]=false # Request extra phone for bill addr
 Spree::Config[:alternative_shipping_phone]=false # Request extra phone for ship addr
 Spree::Config[:always_include_confirm_step]=false 
-Spree::Config[:always_put_site_name_in_title]=true
+Spree::Config[:always_put_site_name_in_title]=false
 Spree::Config[:auto_capture]=false # automatically capture the credit card (as opposed to just authorize and capture later)
 Spree::Config[:binary_inventory_cache]=false # only invalidate product cache when a stock item changes whether it is in_stock
 Spree::Config[:check_for_spree_alerts]=false
@@ -192,3 +192,7 @@ Spree::StockLocation.create(name: "Casa dos Quadros",
   propagate_all_variants: true,
   admin_name: "loja"
 )
+
+# Google analytics tracker
+Spree::Tracker.delete_all
+Spree::Tracker.create(analytics_id: "UA-53656094-1",environment: "production", active: true)

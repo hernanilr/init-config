@@ -61,7 +61,6 @@ Spree::Config[:products_per_page]=12
 Spree::Config[:promotions_per_page]=15
 Spree::Config[:redirect_https_to_http]=true
 Spree::Config[:require_master_price]=true
-Spree::Config[:shipment_inc_vat]=false
 Spree::Config[:shipping_instructions]=false # Request instructions/info for shipping
 Spree::Config[:show_only_complete_orders_by_default]=true
 Spree::Config[:show_variant_full_price]=false #Displays variant full price or difference with product price. 
@@ -69,8 +68,10 @@ Spree::Config[:show_products_without_price]=false
 Spree::Config[:show_raw_product_description]=false
 Spree::Config[:tax_using_ship_address]=true
 Spree::Config[:track_inventory_levels]=true # Determines whether to track on_hand values for variants / products.
+
+# email config
 Spree::Config[:send_core_emails]=true
-Spree::Config[:mails_from]='contato@casadosquadros.com.br'
+Spree::Config[:mails_from]='loja@casadosquadros.com.br'
 
 #Estados
 c11=br.states.create!(name: 'Distrito Federal',abbr: 'DF')
@@ -196,3 +197,17 @@ Spree::StockLocation.create(name: "Casa dos Quadros",
 # Google analytics tracker
 Spree::Tracker.delete_all
 Spree::Tracker.create(analytics_id: "UA-53656094-1",environment: "production", active: true)
+
+Spree::AuthenticationMethod.delete_all
+Spree::AuthenticationMethod.create(environment: "production",
+  provider: "google_oauth2",
+  api_key: ENV['FDGP_API_KEY'],
+  api_secret: ENV['FDGP_API_SECRET'],
+  active: true
+)
+Spree::AuthenticationMethod.create(environment: "production",
+  provider: "twitter",
+  api_key: ENV['FDTW_API_KEY'],
+  api_secret: ENV['FDTW_API_SECRET'],
+  active: true
+)

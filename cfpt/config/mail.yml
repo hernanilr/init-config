@@ -5,5 +5,5 @@ settings:
   :domain: fruga.pt
   :enable_starttls_auto: true
   :authentication:  :plain
-  :user_name: <%= ENV['SMTP_FRUGA'] %>
-  :password: <%= ENV['SMTP_FRUGA_PASSWORD'] %>
+  :user_name: <%= ENV['CFSMTP'] %>
+  :password: <%= ENV['CFSMTP_PASSWORD'] %>

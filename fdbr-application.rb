@@ -35,8 +35,22 @@ module Fdbr
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :'pt-BR'
     config.i18n.available_locales = [:'pt-BR']
     config.i18n.locale = :'pt-BR'
+
+    config.action_mailer.default_url_options = { host: 'loja.casadosquadros.com.br' }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true 
+    config.action_mailer.smtp_settings = { 
+      address: 'smtp.mandrillapp.com',
+      port: 587,
+      domain: 'casadosquadros.com.br',
+      enable_starttls_auto: true,
+      authentication:  :plain,
+      user_name: ENV['FDSMTP'],
+      password: ENV['FDSMTP_PASSWORD']
+      }
+
   end
 end

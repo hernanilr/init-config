@@ -1,15 +1,15 @@
-<meta charset="utf-8">
-<title><%= title %></title>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<meta charset="utf-8">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<title><%= title %></title>
+<meta content="width=device-width, initial-scale=1" name="viewport">
 <%== meta_data_tags %>
 <%= canonical_tag(current_store.url) %>
-<%= favicon_link_tag image_path('favicon.ico') %>
-<%= stylesheet_link_tag 'spree/frontend/all', :media => 'screen' %>
+<%= favicon_link_tag 'favicon.ico' %>
+<%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type: 'image/png' %>
+<%= stylesheet_link_tag 'spree/frontend/all', media: 'screen' %>
 <%= csrf_meta_tags %>
-<%= javascript_include_tag 'spree/frontend/all' %>
+<%= javascript_include_tag 'spree/frontend/all', async: true %>
 <!--[if lt IE 9]>
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js"></script>
 <![endif]-->

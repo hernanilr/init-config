@@ -21,19 +21,17 @@ Rails.application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets=true
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
+  # Generate digests for assets URLs.
+  config.assets.digest = true
+  # `config.assets.compress` has moved to config/initializers/assets.rb
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
-
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
-
-  # Generate digests for assets URLs.
-  config.assets.digest = true
+  config.assets.css_compressor = :sass
 
   # `config.assets.precompile` has moved to config/initializers/assets.rb
-
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
@@ -52,9 +50,6 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -80,11 +75,20 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.action_controller.asset_host = "http://#{ENV['FOG_DIRECTORY']}.s3-sa-east-1.amazonaws.com"
+  # store assets in a 'folder' instead of bucket root
+  #config.assets.prefix = '/assets'
+  
   # configurar S3  
+  one_year = 31557600
   config.paperclip_defaults = {
       storage: :s3,
-      s3_host_name: 's3-sa-east-1.amazonaws.com',
-      url: :s3_domain_url,
+      s3_headers: { cache_control: "public, max-age=#{one_year}", expires: CGI.rfc1123_date(Time.now + one_year)},
+      s3_storage_class: :reduced_redundancy,
+      s3_host_alias: ENV['FDAWS_BUCKET'],
+      s3_host_name: "s3-sa-east-1.amazonaws.com",
+      url: :s3_alias_url,
       bucket: ENV['FDAWS_BUCKET'],
       s3_credentials: { access_key_id: ENV['FDAWS_KEY'], secret_access_key: ENV['FDAWS_SECRET'] }
   }

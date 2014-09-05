@@ -42,17 +42,22 @@ gem 'unicorn', group: :production
 
 
 # Gems para Fenix Decorare
-gem 'rails_12factor', group: :production
-gem 'rack-timeout', group: :production
-gem 'newrelic_rpm', group: :production
-gem 'thin', group: :development
+gem 'rails_12factor'      , group: :production
+gem 'heroku_rails_deflate', group: :production
+gem 'newrelic_rpm'        , group: :production
+gem 'thin'                , group: :development
+gem 'rack-timeout'
+gem 'premailer-rails'
+gem 'nokogiri'
 if ENV['USE_LOCAL_SPREE']
+  gem 'asset_sync'              ,path:   '../asset_sync'
   gem 'spree'                   ,path:   '../spree'                              ,branch: '2-3-stable'
   gem 'spree_auth_devise'       ,path:   '../spree_auth_devise'                  ,branch: '2-3-stable'
   gem 'spree_i18n'              ,path:   '../spree_i18n'                         ,branch: '2-3-stable'
   gem 'spree_social'            ,path:   '../spree_social'                       ,branch: '2-3-stable'
   gem 'spree_bootstrap_frontend',path:   '../spree_bootstrap_frontend'           ,branch: '2-3-stable'
 else
+  gem 'asset_sync'              ,github: 'fenixdecorare/asset_sync'
   gem 'spree'                   ,github: 'fenixdecorare/spree'                   ,branch: '2-3-stable'
   gem 'spree_auth_devise'       ,github: 'fenixdecorare/spree_auth_devise'       ,branch: '2-3-stable'
   gem 'spree_i18n'              ,github: 'fenixdecorare/spree_i18n'              ,branch: '2-3-stable'

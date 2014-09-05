@@ -1,10 +1,10 @@
 HTTP/1.1 204 No Content
 Server: GitHub.com
-Date: Sun, 03 Aug 2014 18:04:05 GMT
+Date: Thu, 04 Sep 2014 10:57:42 GMT
 Status: 204 No Content
 X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4996
-X-RateLimit-Reset: 1407090494
+X-RateLimit-Remaining: 4993
+X-RateLimit-Reset: 1409831583
 X-GitHub-Media-Type: github.v3
 X-XSS-Protection: 1; mode=block
 X-Frame-Options: deny
@@ -12,20 +12,20 @@ Content-Security-Policy: default-src 'none'
 Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
 Access-Control-Allow-Origin: *
-X-GitHub-Request-Id: 0251C0F1:3387:45A6D2D:53DE7995
-Strict-Transport-Security: max-age=31536000; includeSubdomains
+X-GitHub-Request-Id: 02501D23:7B5F:3FE385A8:540845A5
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
 X-Content-Type-Options: nosniff
 Vary: Accept-Encoding
-X-Served-By: c436b2b44345c72ff906059f604991e7
+X-Served-By: 132026e9262a0093e437f99db5f1e499
 
 HTTP/1.1 202 Accepted
 Server: GitHub.com
-Date: Sun, 03 Aug 2014 18:04:26 GMT
+Date: Thu, 04 Sep 2014 10:58:02 GMT
 Content-Type: application/json; charset=utf-8
 Status: 202 Accepted
 X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4995
-X-RateLimit-Reset: 1407090494
+X-RateLimit-Remaining: 4992
+X-RateLimit-Reset: 1409831583
 X-GitHub-Media-Type: github.v3
 X-XSS-Protection: 1; mode=block
 X-Frame-Options: deny
@@ -34,18 +34,18 @@ Content-Length: 16321
 Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
 Access-Control-Allow-Origin: *
-X-GitHub-Request-Id: 0251C0F1:0444:85F3DA8:53DE79AA
-Strict-Transport-Security: max-age=31536000; includeSubdomains
+X-GitHub-Request-Id: 02501D23:255B:14F4340:540845BA
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
 X-Content-Type-Options: nosniff
 
 {
-  "id": 22580443,
+  "id": 23658939,
   "name": "spree_auth_devise",
   "full_name": "fenixdecorare/spree_auth_devise",
   "owner": {
     "login": "fenixdecorare",
     "id": 8298988,
-    "avatar_url": "https://avatars.githubusercontent.com/u/8298988?v=1",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8298988?v=2",
     "gravatar_id": "148479c79d1749c4fa55f77b9a2d0e0f",
     "url": "https://api.github.com/users/fenixdecorare",
     "html_url": "https://github.com/fenixdecorare",
@@ -101,8 +101,8 @@ X-Content-Type-Options: nosniff
   "notifications_url": "https://api.github.com/repos/fenixdecorare/spree_auth_devise/notifications{?since,all,participating}",
   "labels_url": "https://api.github.com/repos/fenixdecorare/spree_auth_devise/labels{/name}",
   "releases_url": "https://api.github.com/repos/fenixdecorare/spree_auth_devise/releases{/id}",
-  "created_at": "2014-08-03T18:04:26Z",
-  "updated_at": "2014-06-30T22:43:55Z",
+  "created_at": "2014-09-04T10:58:02Z",
+  "updated_at": "2014-09-02T12:16:01Z",
   "pushed_at": "2014-07-17T05:09:11Z",
   "git_url": "git://github.com/fenixdecorare/spree_auth_devise.git",
   "ssh_url": "git@github.com:fenixdecorare/spree_auth_devise.git",
@@ -135,7 +135,7 @@ X-Content-Type-Options: nosniff
     "owner": {
       "login": "radar",
       "id": 2687,
-      "avatar_url": "https://avatars.githubusercontent.com/u/2687?v=1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2687?v=2",
       "gravatar_id": "9a2a53db8e9b4476038c94a64b32833f",
       "url": "https://api.github.com/users/radar",
       "html_url": "https://github.com/radar",
@@ -192,7 +192,7 @@ X-Content-Type-Options: nosniff
     "labels_url": "https://api.github.com/repos/radar/spree_auth_devise/labels{/name}",
     "releases_url": "https://api.github.com/repos/radar/spree_auth_devise/releases{/id}",
     "created_at": "2012-05-08T05:37:33Z",
-    "updated_at": "2014-06-30T22:43:55Z",
+    "updated_at": "2014-09-02T12:16:01Z",
     "pushed_at": "2014-07-17T05:09:11Z",
     "git_url": "git://github.com/radar/spree_auth_devise.git",
     "ssh_url": "git@github.com:radar/spree_auth_devise.git",
@@ -200,18 +200,18 @@ X-Content-Type-Options: nosniff
     "svn_url": "https://github.com/radar/spree_auth_devise",
     "homepage": "",
     "size": 2124,
-    "stargazers_count": 16,
-    "watchers_count": 16,
+    "stargazers_count": 18,
+    "watchers_count": 18,
     "language": "Ruby",
     "has_issues": true,
     "has_downloads": true,
     "has_wiki": true,
-    "forks_count": 266,
+    "forks_count": 272,
     "mirror_url": null,
     "open_issues_count": 24,
-    "forks": 266,
+    "forks": 272,
     "open_issues": 24,
-    "watchers": 16,
+    "watchers": 18,
     "default_branch": "master"
   },
   "source": {
@@ -221,7 +221,7 @@ X-Content-Type-Options: nosniff
     "owner": {
       "login": "radar",
       "id": 2687,
-      "avatar_url": "https://avatars.githubusercontent.com/u/2687?v=1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2687?v=2",
       "gravatar_id": "9a2a53db8e9b4476038c94a64b32833f",
       "url": "https://api.github.com/users/radar",
       "html_url": "https://github.com/radar",
@@ -278,7 +278,7 @@ X-Content-Type-Options: nosniff
     "labels_url": "https://api.github.com/repos/radar/spree_auth_devise/labels{/name}",
     "releases_url": "https://api.github.com/repos/radar/spree_auth_devise/releases{/id}",
     "created_at": "2012-05-08T05:37:33Z",
-    "updated_at": "2014-06-30T22:43:55Z",
+    "updated_at": "2014-09-02T12:16:01Z",
     "pushed_at": "2014-07-17T05:09:11Z",
     "git_url": "git://github.com/radar/spree_auth_devise.git",
     "ssh_url": "git@github.com:radar/spree_auth_devise.git",
@@ -286,20 +286,20 @@ X-Content-Type-Options: nosniff
     "svn_url": "https://github.com/radar/spree_auth_devise",
     "homepage": "",
     "size": 2124,
-    "stargazers_count": 16,
-    "watchers_count": 16,
+    "stargazers_count": 18,
+    "watchers_count": 18,
     "language": "Ruby",
     "has_issues": true,
     "has_downloads": true,
     "has_wiki": true,
-    "forks_count": 265,
+    "forks_count": 272,
     "mirror_url": null,
     "open_issues_count": 24,
-    "forks": 265,
+    "forks": 272,
     "open_issues": 24,
-    "watchers": 16,
+    "watchers": 18,
     "default_branch": "master"
   },
-  "network_count": 265,
+  "network_count": 272,
   "subscribers_count": 1
 }

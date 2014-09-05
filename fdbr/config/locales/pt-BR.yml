@@ -1148,7 +1148,7 @@ pt-BR:
     shipping_methods: "Métodos de entrega"
     shipping_price_sack: Preço
     shipping_total: "Total do transporte marítimo"
-    shop_by_taxonomy: "Comprar por %{taxonomy}"
+    shop_by_taxonomy: "%{taxonomy}"
     shopping_cart: "Carrinho de compra"
     show: Mostrar
     show_active: "Mostrar ativos"

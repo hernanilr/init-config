@@ -1,4 +1,0 @@
-<!-- replace "div#footer-left" -->
-<div id="footer-left" class="col-md-6" data-hook>
-<small>Copyright &copy; 2015 <%= link_to 'Casa dos Quadros', 'http://www.casadosquadros.com.br', target: "_new" %></small>
-</div>
